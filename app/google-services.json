@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783852064675",
+    "project_id": "kinderkit-68d4c",
+    "storage_bucket": "kinderkit-68d4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783852064675:android:1d415256d72da124361416",
+        "android_client_info": {
+          "package_name": "dev.netanelbcn.kinderkit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEpvdM2-OzgPw8PCot2hQRvIMDT5rBiFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
