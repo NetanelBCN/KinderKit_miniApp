@@ -1,5 +1,6 @@
 package dev.netanelbcn.kinderkit.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Kid {
@@ -7,10 +8,10 @@ public class Kid {
    private String fName;
    private String lName;
    private Date birthDate;
-   private String [] photosUri;
+   private ArrayList <String> photosUri;
    private String profilePhotoUri;
-   private immunizationRecord [] immunizationRecords;
-   private KidEvent [] events;
+   private ArrayList <immunizationRecord> immunizationRecords;
+   private ArrayList<KidEvent> events;
 
 
 
