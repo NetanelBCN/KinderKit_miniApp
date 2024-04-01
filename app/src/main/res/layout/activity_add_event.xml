@@ -55,5 +55,6 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_below="@id/AE_LLC_eventDetails"/>
+        android:layout_below="@id/AE_LLC_eventDetails"
+        android:layout_marginHorizontal="10dp"/>
 </RelativeLayout>
