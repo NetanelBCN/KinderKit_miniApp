@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_immunization_card.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:padding="16dp"
+    android:background="#95E4CF08">
+
+    <!-- Vaccine Name -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_vaccineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vaccine_name"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Dose Number -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_doseNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dose_number"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="5dp"/>
+
+
+
+    <!-- Vaccinator Name -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_vaccinatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vaccinator_name"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="5dp"/>
+
+    <!-- HMO Name -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_HMOName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hmo_name"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="10dp"/>
+
+    <!-- Creator Name -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/company_name"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="5dp"/>
+    <!-- Date -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/IC_MTV_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="10dp"/>
+    <!-- Delete Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/IC_MB_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/red"
+        />
+
+</LinearLayout>

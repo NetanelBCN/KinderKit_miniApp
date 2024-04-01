@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.GalleryActivity"
+    android:background="@drawable/immunization_background">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/GA_MTV_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/immunizations"
+        android:background="#DDF6E4"
+        android:textSize="50sp"
+        android:textStyle="bold|italic"
+        android:textColor="#0AA0FA"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/IA_RV_immunizationRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GA_MTV_title"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/EA_MB_add_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_record"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#0AA0FA"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:padding="20dp"
+        />
+</RelativeLayout>
