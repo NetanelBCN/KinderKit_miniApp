@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="16dp"
+    android:background="@drawable/ak_back">
+
+<androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/AK_ACET_editTextFirstName"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/first_name"
+    android:inputType="text"
+    android:autofillHints="Israel"
+    />
+
+<androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/AK_ACET_editTextLastName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/AK_ACET_editTextFirstName"
+    android:hint="@string/last_name"
+    android:layout_marginTop="10dp"
+    android:inputType="text"
+    android:autofillHints="Israeli"
+    />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/AK_MTV_textViewBirthDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_birth_date"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textSize="23sp"
+        android:background="@color/white"
+        android:layout_below="@id/AK_ACET_editTextLastName"
+
+        />
+
+    <DatePicker
+        android:id="@+id/AK_DP_datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AK_MTV_textViewBirthDate"
+        android:layout_marginTop="12dp"
+        android:background="@color/light_blue"
+        android:layout_centerHorizontal="true"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/AK_MB_buttonAddPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AK_DP_datePicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/skyBlue"
+        android:text="@string/add_profile_photo" />
+
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/AK_MB_buttonAddKid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/AK_MB_buttonAddPhoto"
+    android:text="@string/add_kid"
+    android:backgroundTint="@color/green"/>
+</RelativeLayout>
+
+

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">KinderKit</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="place_holder">kid</string>
+    <string name="title">KinderKit</string>
+    <string name="kinderkit">KinderKit</string>
+    <string name="last_name">Last Name</string>
+    <string name="add_profile_photo">Add Profile Photo</string>
+    <string name="add_kid">Add Kid</string>
+    <string name="first_name">First Name</string>
+    <string name="choose_birth_date">Choose Birth Date:</string>
 </resources>
