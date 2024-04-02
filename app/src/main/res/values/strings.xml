@@ -45,5 +45,6 @@
     <string name="vaccination_date">Vaccination Date:</string>
     <string name="add_new_event">Add New Event</string>
     <string name="event_title_name">Event Title</string>
+    <string name="set_as_profile_picture">Set As Profile Picture</string>
 
 </resources>
