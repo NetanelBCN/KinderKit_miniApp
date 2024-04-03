@@ -54,4 +54,7 @@ dependencies {
     implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
     // google auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 }

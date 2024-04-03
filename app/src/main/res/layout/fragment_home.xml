@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.ui.home.HomeFragment"
-    android:background="@drawable/family">
+    android:background="@drawable/homepagebackgrond">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/FH_MTV_title"
@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="@string/kinderKit"
         android:background="#DDF6E4"
-        android:textSize="60sp"
+        android:textSize="40sp"
+        android:padding="10dp"
         android:textStyle="bold|italic"
         android:textColor="#0AA0FA"
         android:layout_centerHorizontal="true"
