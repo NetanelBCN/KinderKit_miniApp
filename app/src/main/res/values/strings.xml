@@ -47,5 +47,6 @@
     <string name="event_title_name">Event Title</string>
     <string name="set_as_profile_picture">Set As Profile Picture</string>
     <string name="log_out">Log Out</string>
+    <string name="delete_account">Delete Account</string>
 
 </resources>

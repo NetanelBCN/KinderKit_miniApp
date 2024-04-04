@@ -5,8 +5,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -61,25 +63,30 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
     );
+
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            Intent intent =new Intent(LoginActivity.this, MenuActivity.class);
-            intent.putExtra("uri", user.getPhotoUrl().toString());
-            intent.putExtra("name", user.getDisplayName());
-            intent.putExtra("email", user.getEmail());
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+           Uri photoUrl = user.getPhotoUrl();
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String phone = user.getPhoneNumber();
+            if (photoUrl != null)
+                intent.putExtra("uri", photoUrl.toString());
+            if (name != null)
+                intent.putExtra("name", name);
+            if (email != null)
+                intent.putExtra("email", email);
+            if (phone != null)
+                intent.putExtra("phone", phone);
             startActivity(intent);
-            // ...
         } else {
-            // Sign in failed. If response is null the user canceled the
-            // sign-in flow using the back button. Otherwise check
-            // response.getError().getErrorCode() and handle the error.
-            // ...
+            Log.d("LogInError", "Sign in failed");
         }
     }
-
     private void buildMemberDetails(FirebaseUser user) {
         String photoUrlString = user.getPhotoUrl().toString();
         member.setEmail(user.getEmail())
@@ -89,9 +96,8 @@ public class LoginActivity extends AppCompatActivity {
         int x = 0;
     }
 
+
 }
-
-
 
 
 //package dev.netanelbcn.kinderkit.Views;

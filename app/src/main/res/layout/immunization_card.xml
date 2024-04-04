@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_margin="20dp"
     android:padding="16dp"
-    android:background="#95E4CF08">
+    android:background="#F8ECEDBC">
 
     <!-- Vaccine Name -->
     <com.google.android.material.textview.MaterialTextView
@@ -17,6 +17,8 @@
         android:layout_gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:padding="10dp"
+        android:background="@color/white"
         android:textColor="@color/colorPrimaryDark"
         android:layout_marginBottom="4dp"/>
 
@@ -27,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/dose_number"
         android:layout_gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_marginVertical="5dp"/>
 
@@ -40,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/vaccinator_name"
         android:layout_gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_marginVertical="5dp"/>
 
@@ -51,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hmo_name"
         android:layout_gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_marginVertical="10dp"/>
 
@@ -62,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="@string/company_name"
         android:layout_gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_marginVertical="5dp"/>
     <!-- Date -->
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:text="@string/date"
         android:layout_gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_marginVertical="10dp"/>

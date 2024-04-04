@@ -2,18 +2,33 @@ package dev.netanelbcn.kinderkit.Models;
 
 import android.net.Uri;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Kid {
 
+   public static int AUTO_INCREMENT = 0;
    private String fName;
+
    private String lName;
-   private Date birthDate;
+   private myDate birthDate;
+   private int age;
    private ArrayList <Uri> photosUri;
    private Uri profilePhotoUri;
-   private ArrayList <immunizationRecord> immunizationRecords;
+   private ArrayList <ImmunizationRecord> ImmunizationRecords;
    private ArrayList<KidEvent> events;
+
+   public Kid() {
+        this.photosUri = new ArrayList<>();
+        this.ImmunizationRecords = new ArrayList<>();
+        this.events = new ArrayList<>();
+   }
+
+   public int getAge() {
+      return age;
+   }
+
 
    public String getfName() {
       return fName;
@@ -22,6 +37,10 @@ public class Kid {
    public Kid setfName(String fName) {
       this.fName = fName;
       return this;
+   }
+
+   public myDate getBirthDate() {
+      return birthDate;
    }
 
    public String getlName() {
@@ -33,12 +52,16 @@ public class Kid {
       return this;
    }
 
-   public Date getBirthDate() {
-      return birthDate;
-   }
-
-   public Kid setBirthDate(Date birthDate) {
-      this.birthDate = birthDate;
+   public Kid setBirthDate(int day,int month,int year) {
+      this.birthDate = new myDate(day,year,month);
+      this.age = LocalDate.now().getYear() - this.birthDate.getYear();
+      if(LocalDate.now().getMonthValue()<this.birthDate.getMonth()){
+         this.age--;
+      } else if (LocalDate.now().getMonthValue()==this.birthDate.getMonth()) {
+         if(LocalDate.now().getDayOfMonth()<this.birthDate.getDay()){
+            this.age--;
+         }
+      }
       return this;
    }
 
@@ -60,12 +83,12 @@ public class Kid {
       return this;
    }
 
-   public ArrayList<immunizationRecord> getImmunizationRecords() {
-      return immunizationRecords;
+   public ArrayList<ImmunizationRecord> getImmunizationRecords() {
+      return ImmunizationRecords;
    }
 
-   public Kid setImmunizationRecords(ArrayList<immunizationRecord> immunizationRecords) {
-      this.immunizationRecords = immunizationRecords;
+   public Kid setImmunizationRecords(ArrayList<ImmunizationRecord> ImmunizationRecords) {
+      this.ImmunizationRecords = ImmunizationRecords;
       return this;
    }
 
