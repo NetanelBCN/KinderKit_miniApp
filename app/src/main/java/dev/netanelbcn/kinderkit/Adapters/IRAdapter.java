@@ -4,28 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 
-import dev.netanelbcn.kinderkit.Interfaces.IRCallback;
-import dev.netanelbcn.kinderkit.Interfaces.KidCallback;
+import dev.netanelbcn.kinderkit.Interfaces.DelRecordCallback;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
-import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
 public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> {
     private Context context;
-    private IRCallback irCallback;
+    private DelRecordCallback delRecordCallback;
     private ArrayList<ImmunizationRecord> records;
     private DataManager dataManager = DataManager.getInstance();
 
@@ -34,8 +29,8 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
         this.records = records;
     }
 
-    public IRAdapter setIRCallback(IRCallback irCallback) {
-        this.irCallback = irCallback;
+    public IRAdapter setIRCallback(DelRecordCallback delRecordCallback) {
+        this.delRecordCallback = delRecordCallback;
         return this;
     }
 
@@ -67,11 +62,6 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
 
     }
 
-    /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
-     * @return The total number of items in this adapter.
-     */
     @Override
     public int getItemCount() {
         return records.size();
@@ -101,8 +91,8 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
             IC_MTV_date = itemView.findViewById(R.id.IC_MTV_date);
             IC_MB_delete = itemView.findViewById(R.id.IC_MB_delete);
             IC_MB_delete.setOnClickListener(v -> {
-                if (irCallback != null) {
-                    irCallback.deleteClicked(getItem(getAdapterPosition()), getAdapterPosition());
+                if (delRecordCallback != null) {
+                    delRecordCallback.deleteClicked(getItem(getAdapterPosition()), getAdapterPosition());
                 }
             });
         }

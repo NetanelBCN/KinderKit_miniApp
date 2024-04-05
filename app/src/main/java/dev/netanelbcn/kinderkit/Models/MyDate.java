@@ -1,11 +1,11 @@
 package dev.netanelbcn.kinderkit.Models;
 
-public class myDate {
+public class MyDate {
     private int day;
     private int year;
     private int month;
 
-    public myDate(int day, int year, int month) {
+    public MyDate(int day, int  month, int year) {
         this.day = day;
         this.year = year;
         this.month = month;
@@ -15,7 +15,7 @@ public class myDate {
         return day;
     }
 
-    public myDate setDay(int day) {
+    public MyDate setDay(int day) {
         this.day = day;
         return this;
     }
@@ -24,7 +24,7 @@ public class myDate {
         return year;
     }
 
-    public myDate setYear(int year) {
+    public MyDate setYear(int year) {
         this.year = year;
         return this;
     }
@@ -33,11 +33,11 @@ public class myDate {
         return month;
     }
 
-    public myDate setMonth(int month) {
+    public MyDate setMonth(int month) {
         this.month = month;
         return this;
     }
-    public int compareTo(myDate date){
+    public int compareTo(MyDate date){
         if(this.year>date.getYear()){
             return 1;
         }

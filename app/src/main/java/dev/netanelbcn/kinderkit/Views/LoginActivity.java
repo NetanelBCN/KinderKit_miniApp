@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             if (phone != null)
                 intent.putExtra("phone", phone);
             startActivity(intent);
+            finish();
         } else {
             Log.d("LogInError", "Sign in failed");
         }

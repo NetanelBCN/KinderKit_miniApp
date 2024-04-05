@@ -11,6 +11,7 @@ import java.util.Date;
 
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
+import dev.netanelbcn.kinderkit.Models.KidEvent;
 
 public class DataManager {
 
@@ -35,6 +36,16 @@ public class DataManager {
         kids = new ArrayList<>();
         records = new ArrayList<>();
 
+
+        KidEvent e1 = new KidEvent().setEventTitle("Birthday").setEDate(9, 11, 2020);
+        KidEvent e12 = new KidEvent().setEventTitle("TAKE FROM TRIP").setEDate(13, 4, 2021);
+
+        KidEvent e2 = new KidEvent().setEventTitle("Birthday").setEDate(13, 11, 2021);
+        KidEvent e3 = new KidEvent().setEventTitle("Birthday").setEDate(28, 12, 2021);
+        KidEvent e4 = new KidEvent().setEventTitle("Birthday").setEDate(7, 1, 2021);
+        KidEvent e5 = new KidEvent().setEventTitle("Birthday").setEDate(15, 4, 2021);
+
+
         ImmunizationRecord i1 = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(1).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setVDate(12, 9, 2020);
         ImmunizationRecord i1a = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(2).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setVDate(12, 9, 2021);
         ImmunizationRecord i2 = new ImmunizationRecord().setVaccineName("IPV").setDoseNumber(1).setVaccinatorName("Anat Weiner").setHMOName("Macabi").setVDate(8, 12, 2020);
@@ -53,6 +64,22 @@ public class DataManager {
         Ilay.getImmunizationRecords().add(i2);
         Ilay.getImmunizationRecords().add(i3);
         Ilay.getImmunizationRecords().add(i4);
+
+        Eliya.getEvents().add(e1);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Eliya.getEvents().add(e12);
+        Ariel.getEvents().add(e2);
+        Tamar.getEvents().add(e3);
+        Daniel.getEvents().add(e4);
+        Ilay.getEvents().add(e5);
+
 
         kids.add(Eliya);
         kids.add(Ariel);
@@ -76,25 +103,14 @@ public class DataManager {
         return this;
     }
 
-    public int getDoseNumber(ArrayList<ImmunizationRecord>records ,String vaccineName) {
+    public int getDoseNumber(ArrayList<ImmunizationRecord> records, String vaccineName) {
         int doseNumber = 1;
         for (ImmunizationRecord record : records) {
             if (record.getVaccineName().equals(vaccineName)) {
-                doseNumber=record.getDoseNumber()+1;
+                doseNumber = record.getDoseNumber() + 1;
             }
         }
         return doseNumber;
 
     }
-//    public static void init() {
-//        synchronized (DataManager.class) {
-//            if (instance == null) {
-//                instance = new DataManager();
-//            }
-//        }
-//    }
-//
-//    public static DataManager getInstance() {
-//        return instance;
-//    }
 }

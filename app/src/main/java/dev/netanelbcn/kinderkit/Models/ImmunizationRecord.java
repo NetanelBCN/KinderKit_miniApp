@@ -1,13 +1,9 @@
 package dev.netanelbcn.kinderkit.Models;
 
-import androidx.annotation.NonNull;
-
-import java.util.Date;
-
 public class ImmunizationRecord {
     private String vaccineName;
     private int doseNumber;
-    private myDate vDate;
+    private MyDate vDate;
 
     private String vaccinatorName;
     private String HMOName;
@@ -35,14 +31,14 @@ public class ImmunizationRecord {
     }
 
 
-    public myDate getvDate() {
+    public MyDate getvDate() {
         return vDate;
     }
 
 
 
     public ImmunizationRecord setVDate(int day,int month,int year) {
-       this.vDate= new myDate(day,year,month);
+       this.vDate= new MyDate(day,year,month);
         return this;
     }
 

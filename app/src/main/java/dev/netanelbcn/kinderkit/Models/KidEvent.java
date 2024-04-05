@@ -1,10 +1,8 @@
 package dev.netanelbcn.kinderkit.Models;
 
-import java.util.Date;
-
 public class KidEvent {
     private String eventTitle;
-    private Date date;
+    private MyDate eventDate;
 
     public KidEvent() {
     }
@@ -18,12 +16,12 @@ public class KidEvent {
         return this;
     }
 
-    public Date getDate() {
-        return date;
+    public MyDate getEDate() {
+        return eventDate;
     }
 
-    public KidEvent setDate(Date date) {
-        this.date = date;
+    public KidEvent setEDate(int day, int month, int year) {
+        this.eventDate = new MyDate(day, month, year);
         return this;
     }
 

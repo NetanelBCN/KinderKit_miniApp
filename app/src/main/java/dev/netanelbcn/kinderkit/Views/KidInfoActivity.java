@@ -30,24 +30,29 @@ public class KidInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         setContentView(R.layout.activity_kid_info);
-
         connectUI();
         getIntents();
+        attachListeners();
+
+    }
+
+    private void attachListeners() {
         FH_BTN_delete.setOnClickListener(v -> {
             DataManager.getInstance().getKids().remove(currentKidId);
             finish();
         });
         FH_BTN_immunization.setOnClickListener(v -> {
-
                     Intent intent = new Intent(KidInfoActivity.this, ImmunizationsActivity.class);
                     intent.putExtra("kidPosition", currentKidId);
                     startActivity(intent);
-
-
                 }
         );
+        FH_BTN_events.setOnClickListener(v -> {
+            Intent intent = new Intent(KidInfoActivity.this, EventKidActivity.class);
+            intent.putExtra("kidPosition", currentKidId);
+            startActivity(intent);
+        });
     }
 
     private void getIntents() {
@@ -57,7 +62,6 @@ public class KidInfoActivity extends AppCompatActivity {
         currentKidId = getIntent().getIntExtra("kidPosition", -1);
         Glide.with(this).load(getIntent().getStringExtra("uri")).into(FH_SIV_image);
     }
-
     private void connectUI() {
         FH_MTV_title = findViewById(R.id.FH_MTV_title);
         FH_SIV_image = findViewById(R.id.FH_SIV_image);

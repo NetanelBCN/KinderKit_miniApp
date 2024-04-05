@@ -1,8 +1,7 @@
 package dev.netanelbcn.kinderkit.Interfaces;
 
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
-import dev.netanelbcn.kinderkit.Models.Kid;
 
-public interface IRCallback {
+public interface DelRecordCallback {
     void deleteClicked(ImmunizationRecord record, int position);
 }

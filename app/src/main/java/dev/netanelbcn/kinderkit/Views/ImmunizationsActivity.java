@@ -13,7 +13,6 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 
 import dev.netanelbcn.kinderkit.Adapters.IRAdapter;
-import dev.netanelbcn.kinderkit.Interfaces.IRCallback;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;

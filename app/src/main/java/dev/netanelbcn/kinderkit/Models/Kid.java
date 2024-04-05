@@ -4,7 +4,6 @@ import android.net.Uri;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Kid {
 
@@ -12,7 +11,7 @@ public class Kid {
    private String fName;
 
    private String lName;
-   private myDate birthDate;
+   private MyDate birthDate;
    private int age;
    private ArrayList <Uri> photosUri;
    private Uri profilePhotoUri;
@@ -39,7 +38,7 @@ public class Kid {
       return this;
    }
 
-   public myDate getBirthDate() {
+   public MyDate getBirthDate() {
       return birthDate;
    }
 
@@ -53,7 +52,7 @@ public class Kid {
    }
 
    public Kid setBirthDate(int day,int month,int year) {
-      this.birthDate = new myDate(day,year,month);
+      this.birthDate = new MyDate(day,month,year);
       this.age = LocalDate.now().getYear() - this.birthDate.getYear();
       if(LocalDate.now().getMonthValue()<this.birthDate.getMonth()){
          this.age--;
