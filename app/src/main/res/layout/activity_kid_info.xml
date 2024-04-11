@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.KidInfoActivity"
+    android:orientation="vertical"
     android:background="@drawable/kidinfoback">
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/FH_MTV_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/kinderKit"
         android:background="#DDF6E4"
         android:textSize="50sp"
@@ -20,6 +22,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/FH_SIV_image"
+        android:layout_gravity="center_horizontal"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@id/FH_MTV_title"
@@ -31,6 +34,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/FH_MTV_full_name"
+        android:layout_gravity="center_horizontal"
         style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,6 +51,7 @@
         android:id="@+id/FH_MTV_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_below="@+id/FH_MTV_full_name"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="15dp"
@@ -64,6 +69,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/FH_MTV_age"
+        android:layout_gravity="center_horizontal"
+
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="15dp"
@@ -82,6 +89,8 @@
     android:id="@+id/FH_LLC_buttons"
     android:layout_marginTop="30dp"
     android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+
     >
 
     <com.google.android.material.button.MaterialButton
@@ -113,6 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Immunization_record"
+        android:layout_gravity="center_horizontal"
         android:layout_below="@id/FH_LLC_buttons"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -126,6 +136,7 @@
         android:id="@+id/FH_BTN_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/delete_kid"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/FH_BTN_immunization"
@@ -137,4 +148,4 @@
 
         />
 
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

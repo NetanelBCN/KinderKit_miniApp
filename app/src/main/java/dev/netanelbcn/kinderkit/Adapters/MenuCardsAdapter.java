@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,6 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
 
 import dev.netanelbcn.kinderkit.Interfaces.KidCallback;
@@ -38,6 +35,7 @@ public class MenuCardsAdapter extends RecyclerView.Adapter<MenuCardsAdapter.KidV
         this.kidCallback = playerCallback;
         return this;
     }
+
     public void setKids(ArrayList<Kid> kids) {
         this.kids = kids;
     }
@@ -53,8 +51,12 @@ public class MenuCardsAdapter extends RecyclerView.Adapter<MenuCardsAdapter.KidV
     public void onBindViewHolder(@NonNull MenuCardsAdapter.KidViewHolder holder, int position) {
         Kid kid = getItem(position);
         holder.KC_MTV_name.setText(kid.getfName() + " " + kid.getlName());
+        Glide.with(this.context)
+                .load(kid.getProfilePhotoUri())
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(holder.KC_SIV_photo);
         holder.KC_SIV_photo.setImageURI(kid.getProfilePhotoUri());
-      //  String ur="https://blog.hubspot.com/hs-fs/hubfs/parts-url_0.webp?width=650&height=396&name=parts-url_0.webp";
+        //  String ur="https://blog.hubspot.com/hs-fs/hubfs/parts-url_0.webp?width=650&height=396&name=parts-url_0.webp";
         Glide.with(context)
                 .load(kid.getProfilePhotoUri())
                 .placeholder(R.drawable.ic_launcher_background) // Placeholder image while loading
