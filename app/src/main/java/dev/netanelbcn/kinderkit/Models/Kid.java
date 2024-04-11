@@ -173,6 +173,14 @@ public class Kid {
         return map;
     }
 
+    public Map<String, Uri> getPhotosMap() {
+        Map<String, Uri> map = new HashMap<>();
+        for (Uri uri : this.getPhotosUri()) {
+            map.put(uri.toString(), uri);
+        }
+        return map;
+    }
+
     public ArrayList<ImmunizationRecord> convertIRtoArrayList(Map<String, ImmunizationRecord> map) {
         ArrayList<ImmunizationRecord> iR = new ArrayList<>();
         if (map == null)

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.GalleryActivity"
+    android:orientation="vertical"
     android:background="@drawable/gallerybackground">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/GA_MTV_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/gallery_title"
         android:background="#DDF6E4"
         android:textSize="60sp"
@@ -22,9 +24,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/GA_RV_gallery"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:layout_below="@id/GA_MTV_title"
         android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="16dp"
         android:padding="10dp"
         android:scrollbars="vertical"
@@ -33,16 +37,18 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/EA_MB_add_event"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="@string/add_photo"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#0AA0FA"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:padding="20dp"
         />
 
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

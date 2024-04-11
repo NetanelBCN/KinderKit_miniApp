@@ -22,7 +22,6 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
     private Context context;
     private DelRecordCallback delRecordCallback;
     private ArrayList<ImmunizationRecord> records;
-    private DataManager dataManager = DataManager.getInstance();
 
     public IRAdapter(Context context, ArrayList<ImmunizationRecord> records) {
         this.context = context;
@@ -34,9 +33,6 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
         return this;
     }
 
-    public void setRecords(ArrayList<ImmunizationRecord> records) {
-        this.records = records;
-    }
 
     @NonNull
     @Override

@@ -1,10 +1,10 @@
 package dev.netanelbcn.kinderkit.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
@@ -40,7 +40,7 @@ public class KidInfoActivity extends AppCompatActivity {
 
     private void attachListeners() {
         FH_BTN_delete.setOnClickListener(v -> {
-            Kid kid= DataManager.getInstance().getKids().get(currentKidId);
+            Kid kid = DataManager.getInstance().getKids().get(currentKidId);
             DataManager.getInstance().removeKid(kid);
             finish();
         });
@@ -55,6 +55,11 @@ public class KidInfoActivity extends AppCompatActivity {
             intent.putExtra("kidPosition", currentKidId);
             startActivity(intent);
         });
+        FH_BTN_photos.setOnClickListener(v -> {
+            Intent intent = new Intent(KidInfoActivity.this, GalleryActivity.class);
+            intent.putExtra("kidPosition", currentKidId);
+            startActivity(intent);
+        });
     }
 
     private void getIntents() {
@@ -64,6 +69,7 @@ public class KidInfoActivity extends AppCompatActivity {
         currentKidId = getIntent().getIntExtra("kidPosition", -1);
         Glide.with(this).load(getIntent().getStringExtra("uri")).into(FH_SIV_image);
     }
+
     private void connectUI() {
         FH_MTV_title = findViewById(R.id.FH_MTV_title);
         FH_SIV_image = findViewById(R.id.FH_SIV_image);
@@ -74,5 +80,12 @@ public class KidInfoActivity extends AppCompatActivity {
         FH_BTN_events = findViewById(R.id.FH_BTN_events);
         FH_BTN_immunization = findViewById(R.id.FH_BTN_immunization);
         FH_BTN_delete = findViewById(R.id.FH_BTN_delete);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Glide.with(this).load(DataManager.getInstance().getKids().get(currentKidId).getProfilePhotoUri()).into(FH_SIV_image);
     }
 }
