@@ -1,17 +1,16 @@
 package dev.netanelbcn.kinderkit.Views;
 
+import android.os.Bundle;
+import android.widget.DatePicker;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import android.os.Bundle;
-import android.widget.DatePicker;
-
 import com.google.android.material.button.MaterialButton;
 
-import java.util.ArrayList;
-
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
+import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
@@ -23,9 +22,9 @@ public class AddRecordActivity extends AppCompatActivity {
     private AppCompatEditText AR_ET_creatorName;
     private DatePicker datePicker;
     private MaterialButton AR_MB_add_record;
-    private ArrayList<ImmunizationRecord> records;
+
     private int currentKidPosition;
-    private  DataManager manager;
+    private DataManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +35,10 @@ public class AddRecordActivity extends AppCompatActivity {
         getIntents();
         attachListeners();
     }
-
     private void getIntents() {
         currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
-       manager=DataManager.getInstance();
-        records = manager.getKids().get(currentKidPosition).getImmunizationRecords();
+        manager = DataManager.getInstance();
     }
-
     private void attachListeners() {
         AR_MB_add_record.setOnClickListener(v -> {
             String vaccineName = AR_ET_vaccineName.getText().toString();
@@ -53,11 +49,11 @@ public class AddRecordActivity extends AppCompatActivity {
                 int day = datePicker.getDayOfMonth();
                 int month = datePicker.getMonth();
                 int year = datePicker.getYear();
-                int doseNum = DataManager.getInstance().getKids().get(currentKidPosition).getDoseNumber(records, vaccineName);
+                Kid kid = manager.getKids().get(currentKidPosition);
+                int doseNum = kid.getDoseNumber(kid.getImmunizationRecords(), vaccineName);
                 ImmunizationRecord iR = new ImmunizationRecord().setDoseNumber(doseNum).setVaccineName(vaccineName).setVaccinatorName(vaccinatorName).setHMOName(HMOName).setCreatorName(creatorName).setvdate(day, month, year);
-                records.add(iR);
-                manager.addImmunizationRecord(iR, currentKidPosition);
-
+                iR.initIrID();
+                manager.addImmunizationRecord(iR, kid);
             }
             finish();
         });

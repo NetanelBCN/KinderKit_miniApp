@@ -75,6 +75,18 @@ public class FBmanager {
         addKidIRToDB(kid);
         addKidEventToDB(kid);
     }
+
+    public void addImmunizationRecordToDB(ImmunizationRecord iR, Kid kid) {
+        ref.child(kid.getkId() + "").child("Immunizations").child(iR.getIrID()).setValue(iR);
+    }
+
+    public void addKidEventToDB(KidEvent kEvent, Kid kid) {
+        ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).setValue(kEvent);
+        int x=10;
+    }
+
+
+
     private void addKidIRToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Immunizations").setValue(kid.getIRMap());
     }

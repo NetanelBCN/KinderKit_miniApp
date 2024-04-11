@@ -9,8 +9,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import com.google.android.material.button.MaterialButton;
 
-import java.util.ArrayList;
-
+import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
@@ -19,7 +18,6 @@ public class AddEventActivity extends AppCompatActivity {
     private AppCompatEditText AE_ET_eventName;
     private DatePicker AE_MDP_eventDate;
     private MaterialButton AR_MB_add_record;
-    private ArrayList<KidEvent> kidEvents;
     private int currentKidPosition;
 
     @Override
@@ -30,7 +28,6 @@ public class AddEventActivity extends AppCompatActivity {
         connectUI();
         getIntents();
         attachListeners();
-
     }
 
     private void attachListeners() {
@@ -40,24 +37,25 @@ public class AddEventActivity extends AppCompatActivity {
                 eventName = AE_ET_eventName.getText().toString();
             else
                 eventName = "Untitled Event";
+            Kid kid = DataManager.getInstance().getKids().get(currentKidPosition);
             int day = AE_MDP_eventDate.getDayOfMonth();
             int month = AE_MDP_eventDate.getMonth();
             int year = AE_MDP_eventDate.getYear();
-            KidEvent kidEvent = new KidEvent().setEventTitle(eventName).setEDate(day, month+1, year);
-            for (KidEvent event : kidEvents) {
+            KidEvent kidEvent = new KidEvent().setEventTitle(eventName).setEDate( day, month + 1, year);
+            kidEvent.initEId();
+            for (KidEvent event : kid.getEvents()) {
                 if (event.getEventTitle().equals(kidEvent.getEventTitle()) && event.getEDate().equals(kidEvent.getEDate())) {
                     finish();
                     return;
                 }
             }
-            kidEvents.add(kidEvent);
+            DataManager.getInstance().addKidEvent(kidEvent, kid);
             finish();
         });
     }
 
     private void getIntents() {
         currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
-        kidEvents = DataManager.getInstance().getKids().get(currentKidPosition).getEvents();
     }
 
     private void connectUI() {

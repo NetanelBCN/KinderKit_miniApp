@@ -21,7 +21,8 @@ public class ImmunizationRecord {
         this.vaccinatorName = vaccinatorName;
         this.HMOName = HMOName;
         this.creatorName = creatorName;
-        this.irID=this.vaccineName+"id"+this.doseNumber;    }
+        this.irID = this.vaccineName + "id" + this.doseNumber;
+    }
 
     public ImmunizationRecord setvdate(MyDate vdate) {
         this.vdate = vdate;
@@ -60,8 +61,11 @@ public class ImmunizationRecord {
 
     public ImmunizationRecord setDoseNumber(int doseNumber) {
         this.doseNumber = doseNumber;
-        this.irID=this.vaccineName+"id"+this.doseNumber;
         return this;
+    }
+
+    public void initIrID() {
+        this.irID = this.vaccineName + "id" + this.doseNumber;
     }
 
 

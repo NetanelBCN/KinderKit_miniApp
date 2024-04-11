@@ -1,21 +1,12 @@
 package dev.netanelbcn.kinderkit.Uilities;
 
 import android.net.Uri;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
@@ -94,16 +85,15 @@ public class DataManager {
         return kids;
     }
 
-    public void addImmunizationRecord(ImmunizationRecord record, int index) {
-        Kid kid = kids.get(index);
+    public void addImmunizationRecord(ImmunizationRecord record, Kid kid) {
+
         kid.getImmunizationRecords().add(record);
-        //   addIMRecordToRTDB(record, kid);
+        fbmanager.addImmunizationRecordToDB(record, kid);
     }
 
-    public void addKidEvent(KidEvent event, int index) {
-        Kid kid = kids.get(index);
+    public void addKidEvent(KidEvent event, Kid kid) {
         kid.getEvents().add(event);
-        // addKidEventToRTDB(event, kid.getkId());
+        fbmanager.addKidEventToDB(event, kid);
     }
 
     public void removeKid(int index) {
@@ -132,19 +122,6 @@ public class DataManager {
         kids.add(kid);
         fbmanager.addKidToDB(kid);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //    public void addImmunizationRecord(ImmunizationRecord record, Kid kid, FirebaseUser user) {
@@ -227,7 +204,7 @@ public class DataManager {
         Ilay.getEvents().add(e5);
 
 
-       addKid(Eliya);
+        addKid(Eliya);
         addKid(Ariel);
         addKid(Tamar);
         addKid(Daniel);
