@@ -107,4 +107,7 @@ public class FBmanager {
     public void removeKidEventFB(KidEvent kEvent, Kid kid) {
         ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).removeValue();
     }
+    public void removeKidFromDB(String kId) {
+        ref.child(kId).removeValue();
+    }
 }

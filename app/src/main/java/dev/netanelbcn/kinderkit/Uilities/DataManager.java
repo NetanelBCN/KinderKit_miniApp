@@ -96,10 +96,9 @@ public class DataManager {
         fbmanager.addKidEventToDB(event, kid);
     }
 
-    public void removeKid(int index) {
-        Kid kid = kids.get(index);
+    public void removeKid(Kid kid) {
         kids.remove(kid);
-        //   removeKidFromRTDB(kid.getkId());
+        fbmanager.removeKidFromDB(kid.getkId());
     }
 
     public void removeImmunizationRecord(ImmunizationRecord iR, Kid kid) {

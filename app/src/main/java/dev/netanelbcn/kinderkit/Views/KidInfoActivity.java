@@ -11,6 +11,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 
+import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
@@ -39,7 +40,8 @@ public class KidInfoActivity extends AppCompatActivity {
 
     private void attachListeners() {
         FH_BTN_delete.setOnClickListener(v -> {
-            DataManager.getInstance().getKids().remove(currentKidId);
+            Kid kid= DataManager.getInstance().getKids().get(currentKidId);
+            DataManager.getInstance().removeKid(kid);
             finish();
         });
         FH_BTN_immunization.setOnClickListener(v -> {
