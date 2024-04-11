@@ -27,15 +27,18 @@ public class FBmanager {
     private FirebaseDatabase firebaseRTDatabase;
     private FirebaseUser user;
     private ArrayList<Kid> kids;
+
     public FBmanager(FirebaseUser user) {
         this.firebaseRTDatabase = FirebaseDatabase.getInstance();
         this.user = user;
         this.kids = new ArrayList<>();
         ref = firebaseRTDatabase.getReference(this.user.getUid());
     }
+
     public ArrayList<Kid> getKids() {
         return kids;
     }
+
     public void LoadDataFromFBRTDB(DataLoadCallback callback) {
         DatabaseReference myRef = firebaseRTDatabase.getReference(this.user.getUid());
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -59,6 +62,7 @@ public class FBmanager {
             }
         });
     }
+
     private Kid buildKidBasicInfo(DataSnapshot kidSnapshot) {
         String kidId = kidSnapshot.getKey();
         String fName = kidSnapshot.child("name").child("fName").getValue(String.class);
@@ -68,8 +72,11 @@ public class FBmanager {
         int year = kidSnapshot.child("birthDate").child("year").getValue(Integer.class);
         int age = kidSnapshot.child("age").getValue(Integer.class);
         String profilePhotoUri = kidSnapshot.child("profilePhotoUri").getValue(String.class);
+        if (profilePhotoUri == null)
+            profilePhotoUri = "";
         return new Kid(kidId).setAge(age).setBirthDate(day, month, year).setfName(fName).setlName(lName).setProfilePhotoUri(Uri.parse(profilePhotoUri));
     }
+
     public void addKidToDB(Kid kid) {
         addKidBaseInfoToDB(kid);
         addKidIRToDB(kid);
@@ -82,31 +89,36 @@ public class FBmanager {
 
     public void addKidEventToDB(KidEvent kEvent, Kid kid) {
         ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).setValue(kEvent);
-        int x=10;
+        int x = 10;
     }
-
 
 
     private void addKidIRToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Immunizations").setValue(kid.getIRMap());
     }
+
     private void addKidEventToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Events").setValue(kid.getKEMap());
     }
+
     private void addKidBaseInfoToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("name").child("fName").setValue(kid.getfName());
         ref.child(kid.getkId() + "").child("name").child("lName").setValue(kid.getlName());
         ref.child(kid.getkId() + "").child("birthDate").setValue(kid.getBirthDate());
         ref.child(kid.getkId() + "").child("age").setValue(kid.getAge());
         ref.child(kid.getkId() + "").child("photosUri").setValue(kid.getPhotosUri());
-        ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(kid.getProfilePhotoUri().toString());
+        if (kid.getProfilePhotoUri() != null)
+            ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(kid.getProfilePhotoUri().toString());
     }
+
     public void removeImmunizationRecordFB(ImmunizationRecord iR, Kid kid) {
         ref.child(kid.getkId()).child("Immunizations").child(iR.getIrID()).removeValue();
     }
+
     public void removeKidEventFB(KidEvent kEvent, Kid kid) {
         ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).removeValue();
     }
+
     public void removeKidFromDB(String kId) {
         ref.child(kId).removeValue();
     }

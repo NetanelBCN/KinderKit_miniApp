@@ -110,8 +110,6 @@ public class DataManager {
         kid.getEvents().remove(kEvent);
         fbmanager.removeKidEventFB(kEvent, kid);
     }
-
-
     public DataManager setKids(ArrayList<Kid> kids) {
         this.kids = kids;
         return this;
@@ -119,42 +117,10 @@ public class DataManager {
 
     public void addKid(Kid kid) {
         kids.add(kid);
+        this.kids.sort((o1, o2) -> o2.getAge() - o1.getAge());
         fbmanager.addKidToDB(kid);
     }
 
-
-//    public void addImmunizationRecord(ImmunizationRecord record, Kid kid, FirebaseUser user) {
-//        DatabaseReference ref = firebaseRTDatabase.getReference("users");
-//        ref.child(user.getUid()).child("kids").child(kid.getfName()).child("immunizationRecords").push().setValue(record);
-//    }
-
-
-//    public void LoadData(){
-//        fbmanager.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                ArrayList<ImmunizationRecord> iR;
-//                ArrayList<KidEvent> events;
-//                int KidId , day ,month ,year,age;
-//                ArrayList<Uri> photosUri;
-//                String fname,lname ,profilePhotoUri;
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    KidId = snapshot.getchild().getValue(Integer.class);
-//                    snapshot.getValue();
-//                    YourModelClass model = snapshot.getValue(YourModelClass.class);
-//                    // Do something with the model object
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                // This method will be invoked if the ValueEventListener is cancelled, or if permission denied
-//                Log.e("Firebase", "Error: " + databaseError.getMessage());
-//            }
-//        });
-
-
-    // Add a ValueEventListener to retrieve data only once
 
 
     public DataManager InitGeneralData() {

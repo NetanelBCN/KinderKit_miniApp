@@ -40,7 +40,6 @@ public class MenuActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMenuBinding binding;
-
     private ShapeableImageView NHM_IV_profilePic;
     private MaterialTextView NHM_TV_userName;
     private MaterialTextView NHM_TV_email;
@@ -55,8 +54,10 @@ public class MenuActivity extends AppCompatActivity {
         binding.appBarMenu.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action22", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intent=new Intent(MenuActivity.this, AddKidActivity.class);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = binding.drawerLayout;

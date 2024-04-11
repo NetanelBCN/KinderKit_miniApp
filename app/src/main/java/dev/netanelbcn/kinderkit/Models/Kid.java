@@ -27,8 +27,7 @@ public class Kid {
         this.photosUri = new ArrayList<>();
         this.ImmunizationRecords = new ArrayList<>();
         this.events = new ArrayList<>();
-        String id = UUID.randomUUID().toString();
-        this.kId = id.toUpperCase();
+        this.kId = UUID.randomUUID().toString().toUpperCase();
     }
 
     public Kid(String kId) {
@@ -202,7 +201,7 @@ public class Kid {
             Map<String, Object> eventData = (Map<String, Object>) entry.getValue();
             Map<String, Object> edate = (Map<String, Object>) eventData.get("edate");
             MyDate date = new MyDate(((Long) edate.get("day")).intValue(), ((Long) edate.get("month")).intValue(), ((Long) edate.get("year")).intValue());
-            Log.d("05233",eventData.get("eId")+"");
+            Log.d("05233", eventData.get("eId") + "");
             KidEvent event = new KidEvent().seteId((String) eventData.get("eId"))
                     .setEDate(date)
                     .setEventTitle((String) eventData.get("eventTitle"));

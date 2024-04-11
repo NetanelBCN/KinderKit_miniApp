@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="16dp"
-    android:background="@drawable/ak_back">
-
-<androidx.appcompat.widget.AppCompatEditText
-    android:id="@+id/AK_ACET_editTextFirstName"
-    android:layout_marginTop="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/first_name"
-    android:inputType="text"
-    android:autofillHints="Israel"
-    />
+    android:layout_height="match_parent"
+    android:background="@drawable/ak_back"
+    android:padding="16dp">
 
-<androidx.appcompat.widget.AppCompatEditText
-    android:id="@+id/AK_ACET_editTextLastName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/AK_ACET_editTextFirstName"
-    android:hint="@string/last_name"
-    android:layout_marginTop="10dp"
-    android:inputType="text"
-    android:autofillHints="Israeli"
-    />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/AK_ACET_editTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="Israel"
+        android:background="@color/white"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        android:padding="5dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/AK_ACET_editTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/AK_ACET_editTextFirstName"
+        android:layout_marginTop="10dp"
+        android:autofillHints="Israeli"
+        android:background="@color/white"
+        android:hint="@string/last_name"
+        android:inputType="text"
+        android:padding="5dp" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/AK_MTV_textViewBirthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/choose_birth_date"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:textSize="23sp"
-        android:background="@color/white"
         android:layout_below="@id/AK_ACET_editTextLastName"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:text="@string/choose_birth_date"
+        android:textSize="23sp"
+        android:textStyle="bold"
 
         />
 
@@ -43,9 +46,9 @@ android:padding="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/AK_MTV_textViewBirthDate"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:background="@color/light_blue"
-        android:layout_centerHorizontal="true"/>
+        android:background="@color/light_blue" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/AK_MB_buttonAddPhoto"
@@ -61,13 +64,13 @@ android:padding="16dp"
         android:backgroundTint="@color/skyBlue"
         android:text="@string/add_profile_photo" />
 
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/AK_MB_buttonAddKid"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/AK_MB_buttonAddPhoto"
-    android:text="@string/add_kid"
-    android:backgroundTint="@color/green"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/AK_MB_buttonAddKid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AK_MB_buttonAddPhoto"
+        android:backgroundTint="@color/green"
+        android:text="@string/add_kid" />
 </RelativeLayout>
 
 

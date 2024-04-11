@@ -14,10 +14,10 @@
     <string name="place_holder">kid</string>
     <string name="title">KinderKit</string>
     <string name="kinderKit">KinderKit</string>
-    <string name="last_name">Last Name</string>
+    <string name="last_name">Add Last Name</string>
     <string name="add_profile_photo">Add Profile Photo</string>
     <string name="add_kid">Add Kid</string>
-    <string name="first_name">First Name</string>
+    <string name="first_name">Add First Name</string>
     <string name="choose_birth_date">Choose Birth Date:</string>
     <string name="full_name">Full Name:</string>
     <string name="age">Age:</string>
