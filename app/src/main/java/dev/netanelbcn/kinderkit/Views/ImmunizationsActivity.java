@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import dev.netanelbcn.kinderkit.Adapters.IRAdapter;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
+import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
@@ -34,12 +35,14 @@ public class ImmunizationsActivity extends AppCompatActivity {
         connectUI();
         getIntents();
         attachListeners();
-        records = DataManager.getInstance().getKids().get(currentKidPosition).getImmunizationRecords();
+        Kid myKid= DataManager.getInstance().getKids().get(currentKidPosition);
+        records = myKid.getImmunizationRecords();
         IA_RV_immunizationRecord.setLayoutManager(new
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new IRAdapter(this, records);
         adapter.setIRCallback((record, position) -> {
-            records.remove(position);
+//            DataManager.getInstance().removeImmunizationRecord(record,myKid);
+            DataManager.getInstance().removeImmunizationRecord(position,myKid);
             adapter.notifyDataSetChanged();
         });
         IA_RV_immunizationRecord.setAdapter(adapter);
@@ -66,7 +69,7 @@ public class ImmunizationsActivity extends AppCompatActivity {
     }
 
     private void refreshRecordsList() {
-        records.sort((o1, o2) -> o1.getvDate().compareTo(o2.getvDate()));
+        records.sort((o1, o2) -> o1.getvdate().compareTo(o2.getvdate()));
         adapter.notifyDataSetChanged();
     }
 

@@ -25,6 +25,7 @@ public class AddRecordActivity extends AppCompatActivity {
     private MaterialButton AR_MB_add_record;
     private ArrayList<ImmunizationRecord> records;
     private int currentKidPosition;
+    private  DataManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class AddRecordActivity extends AppCompatActivity {
 
     private void getIntents() {
         currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
-        records = DataManager.getInstance().getKids().get(currentKidPosition).getImmunizationRecords();
+       manager=DataManager.getInstance();
+        records = manager.getKids().get(currentKidPosition).getImmunizationRecords();
     }
 
     private void attachListeners() {
@@ -51,9 +53,11 @@ public class AddRecordActivity extends AppCompatActivity {
                 int day = datePicker.getDayOfMonth();
                 int month = datePicker.getMonth();
                 int year = datePicker.getYear();
-                int doseNum = DataManager.getInstance().getDoseNumber(records, vaccineName);
-                ImmunizationRecord iR = new ImmunizationRecord().setDoseNumber(doseNum).setVaccineName(vaccineName).setVaccinatorName(vaccinatorName).setHMOName(HMOName).setCreatorName(creatorName).setVDate(day, month, year);
+                int doseNum = DataManager.getInstance().getKids().get(currentKidPosition).getDoseNumber(records, vaccineName);
+                ImmunizationRecord iR = new ImmunizationRecord().setDoseNumber(doseNum).setVaccineName(vaccineName).setVaccinatorName(vaccinatorName).setHMOName(HMOName).setCreatorName(creatorName).setvdate(day, month, year);
                 records.add(iR);
+                manager.addImmunizationRecord(iR, currentKidPosition);
+
             }
             finish();
         });

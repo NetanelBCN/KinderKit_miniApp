@@ -25,5 +25,11 @@ public class KidEvent {
         return this;
     }
 
-
+    @Override
+    public String toString() {
+        return "KidEvent{" +
+                "eventTitle='" + eventTitle + '\'' +
+                ", eventDate=" + eventDate +
+                '}';
+    }
 }

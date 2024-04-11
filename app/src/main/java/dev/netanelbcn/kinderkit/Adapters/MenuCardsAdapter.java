@@ -31,7 +31,7 @@ public class MenuCardsAdapter extends RecyclerView.Adapter<MenuCardsAdapter.KidV
 
     public MenuCardsAdapter(Context context) {
         this.context = context;
-        this.kids = dataManager.InitGeneralData().getKids();
+        this.kids = dataManager.getKids();
     }
 
     public MenuCardsAdapter setPlayerCallback(KidCallback playerCallback) {

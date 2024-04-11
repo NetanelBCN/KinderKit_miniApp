@@ -1,15 +1,48 @@
 package dev.netanelbcn.kinderkit.Models;
 
 public class ImmunizationRecord {
+
+    private String irID;
     private String vaccineName;
     private int doseNumber;
-    private MyDate vDate;
-
+    private MyDate vdate;
     private String vaccinatorName;
     private String HMOName;
     private String creatorName;
 
+
     public ImmunizationRecord() {
+    }
+
+    public ImmunizationRecord(String vaccineName, int doseNumber, MyDate vdate, String vaccinatorName, String HMOName, String creatorName) {
+        this.vaccineName = vaccineName;
+        this.doseNumber = doseNumber;
+        this.vdate = vdate;
+        this.vaccinatorName = vaccinatorName;
+        this.HMOName = HMOName;
+        this.creatorName = creatorName;
+        this.irID=this.vaccineName+"/#"+this.doseNumber;
+    }
+
+    public ImmunizationRecord setvdate(MyDate vdate) {
+        this.vdate = vdate;
+        return this;
+    }
+
+
+    public String getIrID() {
+        return irID;
+    }
+
+    public ImmunizationRecord setIrID(String irID) {
+        this.irID = irID;
+        return this;
+    }
+
+
+    public ImmunizationRecord setVdate(MyDate vdate) {
+        this.vdate = vdate;
+        return this;
     }
 
     public ImmunizationRecord setVaccineName(String vaccineName) {
@@ -22,23 +55,24 @@ public class ImmunizationRecord {
     }
 
     public int getDoseNumber() {
+
         return doseNumber;
     }
 
     public ImmunizationRecord setDoseNumber(int doseNumber) {
         this.doseNumber = doseNumber;
+        this.irID=this.vaccineName+"/#"+this.doseNumber;
         return this;
     }
 
 
-    public MyDate getvDate() {
-        return vDate;
+    public MyDate getvdate() {
+        return vdate;
     }
 
 
-
-    public ImmunizationRecord setVDate(int day,int month,int year) {
-       this.vDate= new MyDate(day,year,month);
+    public ImmunizationRecord setvdate(int day, int month, int year) {
+        this.vdate = new MyDate(day, month, year);
         return this;
     }
 
@@ -69,15 +103,15 @@ public class ImmunizationRecord {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "ImmunizationRecord{" +
-                "vaccineName='" + vaccineName + '\'' +
-                ", doseNumber=" + doseNumber +
-                ", vDate=" + vDate.toString() +
-                ", vaccinatorName='" + vaccinatorName + '\'' +
-                ", HMOName='" + HMOName + '\'' +
-                ", creatorName='" + creatorName + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "ImmunizationRecord{" +
+//                "vaccineName='" + vaccineName + '\'' +
+//                ", doseNumber=" + doseNumber +
+//                ", vdate=" + vdate.toString() +
+//                ", vaccinatorName='" + vaccinatorName + '\'' +
+//                ", HMOName='" + HMOName + '\'' +
+//                ", creatorName='" + creatorName + '\'' +
+//                '}';
+//    }
 }

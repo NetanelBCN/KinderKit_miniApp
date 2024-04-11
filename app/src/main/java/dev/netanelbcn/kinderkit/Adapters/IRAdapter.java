@@ -57,7 +57,7 @@ public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> 
         if(record.getCreatorName()==null)
             record.setCreatorName("Unknown");
         holder.IC_MTV_companyName.setText("Company: "+record.getCreatorName());
-        holder.IC_MTV_date.setText("Vaccination Date: "+record.getvDate().toString());
+        holder.IC_MTV_date.setText("Vaccination Date: "+record.getvdate().toString());
 
 
     }
