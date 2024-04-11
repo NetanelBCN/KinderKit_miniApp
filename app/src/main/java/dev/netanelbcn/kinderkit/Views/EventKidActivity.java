@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 
 import dev.netanelbcn.kinderkit.Adapters.EvenetAdapter;
+import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
@@ -33,12 +34,13 @@ public class EventKidActivity extends AppCompatActivity {
         connectUI();
         getIntents();
         attachListeners();
-        events = DataManager.getInstance().getKids().get(currentKidPosition).getEvents();
+        Kid myKid = DataManager.getInstance().getKids().get(currentKidPosition);
+        events = myKid.getEvents();
         EA_RV_events.setLayoutManager(new
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new EvenetAdapter(this, events);
         adapter.setEventCallback((event, position) -> {
-            events.remove(position);
+            DataManager.getInstance().removeKidEvent(event, myKid);
             adapter.notifyDataSetChanged();
         });
         EA_RV_events.setAdapter(adapter);

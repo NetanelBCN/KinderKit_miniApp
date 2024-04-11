@@ -41,8 +41,7 @@ public class ImmunizationsActivity extends AppCompatActivity {
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new IRAdapter(this, records);
         adapter.setIRCallback((record, position) -> {
-//            DataManager.getInstance().removeImmunizationRecord(record,myKid);
-            DataManager.getInstance().removeImmunizationRecord(position,myKid);
+           DataManager.getInstance().removeImmunizationRecord(record,myKid);
             adapter.notifyDataSetChanged();
         });
         IA_RV_immunizationRecord.setAdapter(adapter);

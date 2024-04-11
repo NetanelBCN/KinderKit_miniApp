@@ -43,8 +43,13 @@ public class AddEventActivity extends AppCompatActivity {
             int day = AE_MDP_eventDate.getDayOfMonth();
             int month = AE_MDP_eventDate.getMonth();
             int year = AE_MDP_eventDate.getYear();
-
-            KidEvent kidEvent = new KidEvent().setEventTitle(eventName).setEDate(day, month, year);
+            KidEvent kidEvent = new KidEvent().setEventTitle(eventName).setEDate(day, month+1, year);
+            for (KidEvent event : kidEvents) {
+                if (event.getEventTitle().equals(kidEvent.getEventTitle()) && event.getEDate().equals(kidEvent.getEDate())) {
+                    finish();
+                    return;
+                }
+            }
             kidEvents.add(kidEvent);
             finish();
         });

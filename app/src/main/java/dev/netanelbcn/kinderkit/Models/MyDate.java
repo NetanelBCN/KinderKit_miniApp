@@ -1,5 +1,7 @@
 package dev.netanelbcn.kinderkit.Models;
 
+import java.util.Objects;
+
 public class MyDate {
     private int day;
     private int year;
@@ -10,6 +12,15 @@ public class MyDate {
         this.year = year;
         this.month = month;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyDate myDate = (MyDate) o;
+        return day == myDate.day && year == myDate.year && month == myDate.month;
+    }
+
 
     public int getDay() {
         return day;

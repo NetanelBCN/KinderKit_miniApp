@@ -71,36 +71,33 @@ public class LoginActivity extends AppCompatActivity {
             String phone = user.getPhoneNumber();
             manager.setUid(user);
             fbManager = new FBmanager(user);
-            manager.InitGeneralData();
-//            fbManager.LoadDataFromFBRTDB(new DataLoadCallback() {
-//                @Override
-//                public void onDataLoaded() {
-//                    manager.setKids(fbManager.getKids());
-//                    manager.getKids().sort(Comparator.comparingInt(Kid::getAge).reversed());
-//                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-//                    if (photoUrl != null)
-//                        intent.putExtra("uri", photoUrl.toString());
-//                    if (name != null)
-//                        intent.putExtra("name", name);
-//                    if (email != null)
-//                        intent.putExtra("email", email);
-//                    if (phone != null)
-//                        intent.putExtra("phone", phone);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            });
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            if (photoUrl != null)
-                intent.putExtra("uri", photoUrl.toString());
-            if (name != null)
-                intent.putExtra("name", name);
-            if (email != null)
-                intent.putExtra("email", email);
-            if (phone != null)
-                intent.putExtra("phone", phone);
-            startActivity(intent);
-            finish();
+//            manager.InitGeneralData();
+            fbManager.LoadDataFromFBRTDB(() -> {
+                manager.setKids(fbManager.getKids());
+                manager.getKids().sort(Comparator.comparingInt(Kid::getAge).reversed());
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                if (photoUrl != null)
+                    intent.putExtra("uri", photoUrl.toString());
+                if (name != null)
+                    intent.putExtra("name", name);
+                if (email != null)
+                    intent.putExtra("email", email);
+                if (phone != null)
+                    intent.putExtra("phone", phone);
+                startActivity(intent);
+                finish();
+            });
+//            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+//            if (photoUrl != null)
+//                intent.putExtra("uri", photoUrl.toString());
+//            if (name != null)
+//                intent.putExtra("name", name);
+//            if (email != null)
+//                intent.putExtra("email", email);
+//            if (phone != null)
+//                intent.putExtra("phone", phone);
+//            startActivity(intent);
+//            finish();
 
         } else {
             Log.d("LogInError", "Sign in failed");

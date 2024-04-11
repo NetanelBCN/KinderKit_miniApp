@@ -1,11 +1,13 @@
 package dev.netanelbcn.kinderkit.Models;
 
 import android.net.Uri;
+import android.util.Log;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Kid {
 
@@ -18,16 +20,22 @@ public class Kid {
     private Uri profilePhotoUri;
     private ArrayList<ImmunizationRecord> ImmunizationRecords;
     private ArrayList<KidEvent> events;
-    private int kId;
-
-
+    private String kId;
 
 
     public Kid() {
         this.photosUri = new ArrayList<>();
         this.ImmunizationRecords = new ArrayList<>();
         this.events = new ArrayList<>();
-        this.kId=-1;
+        String id = UUID.randomUUID().toString();
+        this.kId = id.toUpperCase();
+    }
+
+    public Kid(String kId) {
+        this.photosUri = new ArrayList<>();
+        this.ImmunizationRecords = new ArrayList<>();
+        this.events = new ArrayList<>();
+        this.kId = kId;
     }
 
     public int getAge() {
@@ -43,13 +51,14 @@ public class Kid {
         this.fName = fName;
         return this;
     }
-    public Kid setkId(int kId) {
+
+    public Kid setkId(String kId) {
         this.kId = kId;
         return this;
     }
 
-    public int getkId() {
-        return kId;
+    public String getkId() {
+        return this.kId;
     }
 
     public MyDate getBirthDate() {
@@ -60,10 +69,6 @@ public class Kid {
         return lName;
     }
 
-    public Kid setBirthDate(MyDate birthDate) {
-        this.birthDate = birthDate;
-        return this;
-    }
 
     public Kid setAge(int age) {
         this.age = age;
@@ -85,6 +90,7 @@ public class Kid {
                 this.age--;
             }
         }
+
         return this;
     }
 
@@ -150,44 +156,59 @@ public class Kid {
                 '}';
     }
 
-    public Map<String,ImmunizationRecord> getIRMap(){
+    public Map<String, ImmunizationRecord> getIRMap() {
 
-        Map<String,ImmunizationRecord> map = new HashMap<>();
+        Map<String, ImmunizationRecord> map = new HashMap<>();
         for (ImmunizationRecord record : this.getImmunizationRecords()) {
-            map.put(record.getIrID(),record);
+            map.put(record.getIrID(), record);
         }
         return map;
     }
 
-//    public Map<String, Object> toMap() {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("fName", fName);
-//        map.put("lName", lName);
-//        map.put("birthDate", birthDate);
-//        map.put("age", age);
-//        map.put("photosUri", photosUri);
-//        map.put("profilePhotoUri", profilePhotoUri);
-//        map.put("kId", kId);
-//        // Convert ArrayLists to ArrayLists of HashMaps
-//        ArrayList<Map<String, Object>> immunizationRecordsMap = new ArrayList<>();
-//        for (ImmunizationRecord record : this.getImmunizationRecords()) {
-//            Map<String, Object> recordMap = new HashMap<>();
-//            recordMap.put("vaccineName", record.getVaccineName());
-//            recordMap.put("doseNumber", record.getDoseNumber());
-//            recordMap.put("vaccinatorName", record.getVaccinatorName());
-//            recordMap.put("hmoName", record.getHMOName());
-//            recordMap.put("vDate", record.getvdate());
-//            immunizationRecordsMap.add(recordMap);
-//        }
-//        map.put("immunizationRecords", immunizationRecordsMap);
-//        ArrayList<Map<String, Object>> eventsMap = new ArrayList<>();
-//        for (KidEvent event : events) {
-//            Map<String, Object> eventMap = new HashMap<>();
-//            eventMap.put("eventTitle", event.getEventTitle());
-//            eventMap.put("eDate", event.getEDate());
-//            eventsMap.add(eventMap);
-//        }
-//        map.put("events", eventsMap);
-//        return map;
-//    }
+    public Map<String, KidEvent> getKEMap() {
+
+        Map<String, KidEvent> map = new HashMap<>();
+        for (KidEvent event : this.getEvents()) {
+            map.put(event.geteId(), event);
+        }
+        return map;
+    }
+
+    public ArrayList<ImmunizationRecord> convertIRtoArrayList(Map<String, ImmunizationRecord> map) {
+        ArrayList<ImmunizationRecord> iR = new ArrayList<>();
+        if (map == null)
+            return iR;
+        for (Map.Entry<String, ImmunizationRecord> entry : map.entrySet()) {
+            Map<String, Object> immunizationData = (Map<String, Object>) entry.getValue();
+            Map<String, Object> vdate = (Map<String, Object>) immunizationData.get("vdate");
+            MyDate date = new MyDate(((Long) vdate.get("day")).intValue(), ((Long) vdate.get("month")).intValue(), ((Long) vdate.get("year")).intValue());
+            ImmunizationRecord record = new ImmunizationRecord().setCreatorName((String) immunizationData.get("creatorName"))
+                    .setDoseNumber(((Long) immunizationData.get("doseNumber")).intValue())
+                    .setHMOName((String) immunizationData.get("hmoname"))
+                    .setVaccinatorName((String) immunizationData.get("vaccinatorName"))
+                    .setVaccineName((String) immunizationData.get("vaccineName"))
+                    .setvdate(date) // Assuming vdate is stored as a Long
+                    .setIrID((String) immunizationData.get("irID"));
+            iR.add(record);
+        }
+        return iR;
+    }
+
+    public ArrayList<KidEvent> convertKEtoArrayList(Map<String, KidEvent> map) {
+        ArrayList<KidEvent> kE = new ArrayList<>();
+        if (map == null)
+            return kE;
+        for (Map.Entry<String, KidEvent> entry : map.entrySet()) {
+            Map<String, Object> eventData = (Map<String, Object>) entry.getValue();
+            Map<String, Object> edate = (Map<String, Object>) eventData.get("edate");
+            MyDate date = new MyDate(((Long) edate.get("day")).intValue(), ((Long) edate.get("month")).intValue(), ((Long) edate.get("year")).intValue());
+            Log.d("05233",eventData.get("eId")+"");
+            KidEvent event = new KidEvent().seteId((String) eventData.get("eId"))
+                    .setEDate(date)
+                    .setEventTitle((String) eventData.get("eventTitle"));
+            kE.add(event);
+        }
+        return kE;
+    }
+
 }

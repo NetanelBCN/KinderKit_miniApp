@@ -112,14 +112,14 @@ public class DataManager {
         //   removeKidFromRTDB(kid.getkId());
     }
 
-    public void removeImmunizationRecord(int pos, Kid kid) {
-        kid.getImmunizationRecords().remove(pos);
-        fbmanager.removeImmunizationRecord(pos, kid);
+    public void removeImmunizationRecord(ImmunizationRecord iR, Kid kid) {
+        kid.getImmunizationRecords().remove(iR);
+        fbmanager.removeImmunizationRecordFB(iR, kid);
     }
 
-    public void removeKidEvent(KidEvent event, Kid kid) {
-        kid.getEvents().remove(event);
-        //  removeEventFromRTDB(event, kid.getkId());
+    public void removeKidEvent(KidEvent kEvent, Kid kid) {
+        kid.getEvents().remove(kEvent);
+        fbmanager.removeKidEventFB(kEvent, kid);
     }
 
 
@@ -130,32 +130,9 @@ public class DataManager {
 
     public void addKid(Kid kid) {
         kids.add(kid);
-        if (kid.getkId() == -1)
-            kid.setkId(idGenerator());
         fbmanager.addKidToDB(kid);
     }
 
-
-    public int generateKidId(int index) {
-        int newId = idGenerator();
-        k_Ids.add(newId);
-        return newId;
-    }
-
-    private int idGenerator() {
-        int num = 3031;
-        if (k_Ids.size() == 0) {
-            this.k_Ids.add(num);
-            return num;
-        }
-        num = this.k_Ids.get(k_Ids.size() - 1);
-        num++;
-        while (k_Ids.contains(num)) {
-            num++;
-        }
-        this.k_Ids.add(num);
-        return num;
-    }
 
 
 
@@ -214,11 +191,11 @@ public class DataManager {
         KidEvent e5 = new KidEvent().setEventTitle("Birthday").setEDate(15, 4, 2021);
 
 
-        ImmunizationRecord i1 = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(1).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2020);
-        ImmunizationRecord i1a = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(2).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2021);
-        ImmunizationRecord i2 = new ImmunizationRecord().setVaccineName("IPV").setDoseNumber(1).setVaccinatorName("Anat Weiner").setHMOName("Macabi").setvdate(8, 12, 2020);
-        ImmunizationRecord i3 = new ImmunizationRecord().setVaccineName("DTaP").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(6, 7, 2008);
-        ImmunizationRecord i4 = new ImmunizationRecord().setVaccineName("covid19").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(19, 1, 2000);
+        ImmunizationRecord i1 = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(1).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2020).setCreatorName("Phizer");
+        ImmunizationRecord i1a = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(2).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2021).setCreatorName("Phizer");
+        ImmunizationRecord i2 = new ImmunizationRecord().setVaccineName("IPV").setDoseNumber(1).setVaccinatorName("Anat Weiner").setHMOName("Macabi").setvdate(8, 12, 2020).setCreatorName("Phizer");
+        ImmunizationRecord i3 = new ImmunizationRecord().setVaccineName("DTaP").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(6, 7, 2008).setCreatorName("Phizer");
+        ImmunizationRecord i4 = new ImmunizationRecord().setVaccineName("covid19").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(19, 1, 2000).setCreatorName("Phizer");
 
         Kid Eliya = new Kid().setBirthDate(9, 11, 2018).setfName("Eliya").setlName("Cohen").setProfilePhotoUri(Uri.parse(
                 "https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/eliya.jpg?alt=media&token=9625f48e-5a77-47da-84f1-6130fe6658d5"));
