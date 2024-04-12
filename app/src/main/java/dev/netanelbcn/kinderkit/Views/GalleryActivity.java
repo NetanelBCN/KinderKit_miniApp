@@ -50,11 +50,11 @@ public class GalleryActivity extends AppCompatActivity {
 //            Uri newProfilePictureUri = myKid.getProfilePhotoUri();
 //            // Update your UI with the new profile picture URI
 //        });
-//        adapter.setSetAsProfilePictureCallback((uri) -> {
-//            DataManager.getInstance().setProfilePhotoUri(uri, myKid);
-//            adapter.notifyDataSetChanged();
-//            finish();
-//        });
+        adapter.setSetAsProfilePictureCallback((uri) -> {
+            DataManager.getInstance().setProfilePhotoUri(uri, myKid);
+            adapter.notifyDataSetChanged();
+            finish();
+        });
         GA_RV_gallery.setAdapter(adapter);
 
     }

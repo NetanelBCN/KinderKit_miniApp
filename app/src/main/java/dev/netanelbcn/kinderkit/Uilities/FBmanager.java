@@ -130,4 +130,8 @@ public class FBmanager {
     public void removeKidFromDB(String kId) {
         ref.child(kId).removeValue();
     }
+
+    public void setProfilePhotoUriToDB(Uri uri, Kid kid) {
+        ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(uri.toString());
+    }
 }

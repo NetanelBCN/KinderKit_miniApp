@@ -40,10 +40,6 @@ public class DataManager {
         this.fbmanager = new FBmanager(user);
     }
 
-    public void setFbmanager(FirebaseUser user) {
-
-    }
-
     @Override
     public String toString() {
         return "DataManager{" +
@@ -89,6 +85,11 @@ public class DataManager {
 
         kid.getImmunizationRecords().add(record);
         fbmanager.addImmunizationRecordToDB(record, kid);
+    }
+
+    public void setProfilePhotoUri(Uri uri, Kid kid) {
+        kid.setProfilePhotoUri(uri);
+        fbmanager.setProfilePhotoUriToDB(uri, kid);
     }
 
     public void addPhotoUri(Uri uri, Kid kid) {

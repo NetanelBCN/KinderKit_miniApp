@@ -79,9 +79,11 @@ public class AddKidActivity extends AppCompatActivity {
                 if (fbImage != null) {
                     kid.setProfilePhotoUri(fbImage);
                     kid.getPhotosUri().add(fbImage);
+
+//                    kid.getPhotosUri().add(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/DEFAULT.jpg?alt=media&token=f55bdee7-a8dd-4e7a-822d-ac0b9b97d873"));
+
                 } else
                     kid.setProfilePhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/DEFAULT.jpg?alt=media&token=f55bdee7-a8dd-4e7a-822d-ac0b9b97d873"));
-
                 DataManager.getInstance().addKid(kid);
             } else
                 Toast.makeText(this, "Can't create Kid with missing fields", Toast.LENGTH_SHORT).show();
