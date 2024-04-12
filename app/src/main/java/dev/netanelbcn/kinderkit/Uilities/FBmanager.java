@@ -79,8 +79,8 @@ public class FBmanager {
 
     public void addKidToDB(Kid kid) {
         addKidBaseInfoToDB(kid);
-        addKidIRToDB(kid);
-        addKidEventToDB(kid);
+        addKidIRsToDB(kid);
+        addKidEventsToDB(kid);
     }
 
     public void addImmunizationRecordToDB(ImmunizationRecord iR, Kid kid) {
@@ -93,11 +93,11 @@ public class FBmanager {
     }
 
 
-    private void addKidIRToDB(Kid kid) {
+    private void addKidIRsToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Immunizations").setValue(kid.getIRMap());
     }
 
-    private void addKidEventToDB(Kid kid) {
+    private void addKidEventsToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Events").setValue(kid.getKEMap());
     }
 
@@ -106,7 +106,9 @@ public class FBmanager {
         ref.child(kid.getkId() + "").child("name").child("lName").setValue(kid.getlName());
         ref.child(kid.getkId() + "").child("birthDate").setValue(kid.getBirthDate());
         ref.child(kid.getkId() + "").child("age").setValue(kid.getAge());
-        ref.child(kid.getkId() + "").child("photosUri").setValue(kid.getPhotosUri());
+        if(kid.getPhotosUri() != null)
+            ref.child(kid.getkId() + "").child("photosUri").setValue(kid.getPhotosUriMap());
+        int x=10;
         if (kid.getProfilePhotoUri() != null)
             ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(kid.getProfilePhotoUri().toString());
     }

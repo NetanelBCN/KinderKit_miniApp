@@ -132,12 +132,27 @@ public class DataManager {
         KidEvent e4 = new KidEvent().setEventTitle("Birthday").setEDate(7, 1, 2021);
         KidEvent e5 = new KidEvent().setEventTitle("Birthday").setEDate(15, 4, 2021);
 
+        e1.initEId();
+        e12.initEId();
+        e2.initEId();
+        e3.initEId();
+        e4.initEId();
+        e5.initEId();
+
 
         ImmunizationRecord i1 = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(1).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2020).setCreatorName("Phizer");
         ImmunizationRecord i1a = new ImmunizationRecord().setVaccineName("HBV").setDoseNumber(2).setVaccinatorName("Sartori Ofira").setHMOName("Clalit").setvdate(12, 9, 2021).setCreatorName("Phizer");
         ImmunizationRecord i2 = new ImmunizationRecord().setVaccineName("IPV").setDoseNumber(1).setVaccinatorName("Anat Weiner").setHMOName("Macabi").setvdate(8, 12, 2020).setCreatorName("Phizer");
         ImmunizationRecord i3 = new ImmunizationRecord().setVaccineName("DTaP").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(6, 7, 2008).setCreatorName("Phizer");
         ImmunizationRecord i4 = new ImmunizationRecord().setVaccineName("covid19").setDoseNumber(1).setVaccinatorName("Dr. Cohen").setHMOName("Leumit").setvdate(19, 1, 2000).setCreatorName("Phizer");
+
+        i1.initIrID();
+        i1a.initIrID();
+        i2.initIrID();
+        i3.initIrID();
+        i4.initIrID();
+
+
 
         Kid Eliya = new Kid().setBirthDate(9, 11, 2018).setfName("Eliya").setlName("Cohen").setProfilePhotoUri(Uri.parse(
                 "https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/eliya.jpg?alt=media&token=9625f48e-5a77-47da-84f1-6130fe6658d5"));
@@ -146,8 +161,6 @@ public class DataManager {
         Kid Daniel = new Kid().setBirthDate(7, 1, 2020).setfName("daniel").setlName("Niazov").setProfilePhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/Daniel.jpg?alt=media&token=9715d152-ca07-4822-ad0d-8e1efcd759e1"));
         Kid Ilay = new Kid().setBirthDate(15, 4, 2021).setfName("Ilay").setlName("Cohen").setProfilePhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/Ilay.jpg?alt=media&token=3f7ea009-c34d-4692-b015-9b08fc5468a3"));
         Eliya.getImmunizationRecords().add(i1);
-        Eliya.getImmunizationRecords().add(i1);
-        Eliya.getImmunizationRecords().add(i1);
         Eliya.getImmunizationRecords().add(i1a);
         Ilay.getImmunizationRecords().add(i2);
         Ilay.getImmunizationRecords().add(i3);
@@ -155,19 +168,10 @@ public class DataManager {
 
         Eliya.getEvents().add(e1);
         Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
-        Eliya.getEvents().add(e12);
         Ariel.getEvents().add(e2);
         Tamar.getEvents().add(e3);
         Daniel.getEvents().add(e4);
         Ilay.getEvents().add(e5);
-
 
         addKid(Eliya);
         addKid(Ariel);

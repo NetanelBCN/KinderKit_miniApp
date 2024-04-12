@@ -76,9 +76,10 @@ public class AddKidActivity extends AppCompatActivity {
                 int month = AK_DP_datePicker.getMonth();
                 int year = AK_DP_datePicker.getYear();
                 Kid kid = new Kid().setBirthDate(day, month + 1, year).setfName(firstName).setlName(lastName);
-                if (fbImage != null)
+                if (fbImage != null) {
                     kid.setProfilePhotoUri(fbImage);
-                else
+                    kid.getPhotosUri().add(fbImage);
+                } else
                     kid.setProfilePhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/DEFAULT.jpg?alt=media&token=f55bdee7-a8dd-4e7a-822d-ac0b9b97d873"));
 
                 DataManager.getInstance().addKid(kid);

@@ -97,6 +97,9 @@ public class Kid {
         return photosUri;
     }
 
+
+
+
     public Kid setPhotosUri(ArrayList<Uri> photosUri) {
         this.photosUri = photosUri;
         return this;
@@ -153,6 +156,15 @@ public class Kid {
                 ", events=" + events +
                 ", kId=" + kId +
                 '}';
+    }
+
+    public Map<String,String> getPhotosUriMap(){
+        Map<String,String> map = new HashMap<>();
+        for (Uri uri : this.getPhotosUri()) {
+            map.put(UUID.randomUUID().toString(),uri.toString());
+        }
+        Log.d("050222",map.toString());
+        return map;
     }
 
     public Map<String, ImmunizationRecord> getIRMap() {
