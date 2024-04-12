@@ -18,7 +18,7 @@ import dev.netanelbcn.kinderkit.Adapters.IRAdapter;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class ImmunizationsActivity extends AppCompatActivity {
 

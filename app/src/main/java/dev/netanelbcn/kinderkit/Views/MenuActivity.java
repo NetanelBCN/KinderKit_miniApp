@@ -3,21 +3,17 @@ package dev.netanelbcn.kinderkit.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,13 +22,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import dev.netanelbcn.kinderkit.Adapters.MenuCardsAdapter;
-import dev.netanelbcn.kinderkit.Interfaces.KidCallback;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
-import dev.netanelbcn.kinderkit.Views.ui.home.HomeFragment;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 import dev.netanelbcn.kinderkit.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {
@@ -51,14 +43,9 @@ public class MenuActivity extends AppCompatActivity {
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMenu.toolbar);
-        binding.appBarMenu.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action22", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                Intent intent=new Intent(MenuActivity.this, AddKidActivity.class);
-                startActivity(intent);
-            }
+        binding.appBarMenu.fab.setOnClickListener(view -> {
+            Intent intent=new Intent(MenuActivity.this, AddKidActivity.class);
+            startActivity(intent);
         });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -71,18 +58,15 @@ public class MenuActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         connectUI();
         getIntents();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.log_out_BTN) {
-                    logOut();
-                }
-                if (item.getItemId() == R.id.delete_BTN) {
-                    deleteAccount();
-                    logOut();
-                }
-                return false;
+        navigationView.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.log_out_BTN) {
+                logOut();
             }
+            if (item.getItemId() == R.id.delete_BTN) {
+                deleteAccount();
+                logOut();
+            }
+            return false;
         });
     }
 
@@ -105,6 +89,7 @@ public class MenuActivity extends AppCompatActivity {
                         Log.d("DeleteAccount", "User account deleted.");
                     }
                 });
+        DataManager.getInstance().deleteUser();
     }
     private void getIntents() {
         String name = getIntent().getStringExtra("name");

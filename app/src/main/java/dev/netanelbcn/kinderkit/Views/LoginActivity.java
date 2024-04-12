@@ -20,10 +20,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import dev.netanelbcn.kinderkit.Interfaces.DataLoadCallback;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 import dev.netanelbcn.kinderkit.Uilities.FBmanager;
 
 public class LoginActivity extends AppCompatActivity {

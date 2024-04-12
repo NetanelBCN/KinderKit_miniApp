@@ -108,7 +108,6 @@ public class FBmanager {
     private void addKidEventsToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("Events").setValue(kid.getKEMap());
     }
-
     private void addKidBaseInfoToDB(Kid kid) {
         ref.child(kid.getkId() + "").child("name").child("fName").setValue(kid.getfName());
         ref.child(kid.getkId() + "").child("name").child("lName").setValue(kid.getlName());
@@ -120,15 +119,12 @@ public class FBmanager {
         if (kid.getProfilePhotoUri() != null)
             ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(kid.getProfilePhotoUri().toString());
     }
-
     public void removeImmunizationRecordFB(ImmunizationRecord iR, Kid kid) {
         ref.child(kid.getkId()).child("Immunizations").child(iR.getIrID()).removeValue();
     }
-
     public void removeKidEventFB(KidEvent kEvent, Kid kid) {
         ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).removeValue();
     }
-
     public void removeKidFromDB(String kId) {
         ref.child(kId).removeValue();
     }
@@ -136,8 +132,10 @@ public class FBmanager {
     public void setProfilePhotoUriToDB(Uri uri, Kid kid) {
         ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(uri.toString());
     }
-
     public void removePhotoUriFB(MyPhoto photo, Kid myKid) {
         ref.child(myKid.getkId() + "").child("photosUri").child(photo.getpId()).removeValue();
+    }
+    public void deleteUser() {
+        ref.removeValue();
     }
 }

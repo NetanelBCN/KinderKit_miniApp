@@ -25,10 +25,10 @@ import dev.netanelbcn.kinderkit.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView FRAGSCORE_RV_recycler;
+
     private MenuCardsAdapter adapter;
-    //    private DataManager dataManager;
-    private KidCallback callbackCardClicked;
+
+
     private RecyclerView FH_RV_kids;
 
     private ShapeableImageView FH_SIV_logo;
@@ -75,8 +75,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void refreshKidsList() {
-//        ArrayList<Kid> updatedKids = DataManager.getInstance().getKids();
-//        adapter.setKids(updatedKids);
         adapter.notifyDataSetChanged();
     }
 

@@ -13,7 +13,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class KidInfoActivity extends AppCompatActivity {
     private MaterialTextView FH_MTV_title;

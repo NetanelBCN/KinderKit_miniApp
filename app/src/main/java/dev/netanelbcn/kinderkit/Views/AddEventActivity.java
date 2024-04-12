@@ -14,7 +14,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class AddEventActivity extends AppCompatActivity {
     private AppCompatEditText AE_ET_eventName;

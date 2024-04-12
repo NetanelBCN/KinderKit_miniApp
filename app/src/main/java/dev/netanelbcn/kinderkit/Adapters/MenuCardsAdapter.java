@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import dev.netanelbcn.kinderkit.Interfaces.KidCallback;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class MenuCardsAdapter extends RecyclerView.Adapter<MenuCardsAdapter.KidViewHolder> {
     private Context context;

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import dev.netanelbcn.kinderkit.Interfaces.DelRecordCallback;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
 public class IRAdapter extends RecyclerView.Adapter<IRAdapter.RecordViewHolder> {
     private Context context;

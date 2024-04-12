@@ -28,7 +28,7 @@ import dev.netanelbcn.kinderkit.Adapters.GalleryAdapter;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.MyPhoto;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class GalleryActivity extends AppCompatActivity {
 

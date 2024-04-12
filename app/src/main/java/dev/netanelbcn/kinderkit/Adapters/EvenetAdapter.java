@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import dev.netanelbcn.kinderkit.Interfaces.DelEventCallback;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class EvenetAdapter extends RecyclerView.Adapter<EvenetAdapter.EventViewHolder>{
 

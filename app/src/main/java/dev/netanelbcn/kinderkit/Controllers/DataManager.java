@@ -1,4 +1,4 @@
-package dev.netanelbcn.kinderkit.Uilities;
+package dev.netanelbcn.kinderkit.Controllers;
 
 import android.net.Uri;
 
@@ -12,6 +12,7 @@ import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.Models.MyPhoto;
+import dev.netanelbcn.kinderkit.Uilities.FBmanager;
 
 public class DataManager {
 
@@ -195,5 +196,9 @@ public class DataManager {
     public void removePhotoUri(MyPhoto photo, Kid myKid) {
         myKid.getPhotosUri().remove(photo);
         fbmanager.removePhotoUriFB(photo, myKid);
+    }
+
+    public void deleteUser() {
+        fbmanager.deleteUser();
     }
 }

@@ -18,7 +18,7 @@ import dev.netanelbcn.kinderkit.Adapters.EvenetAdapter;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class EventKidActivity extends AppCompatActivity {
     private EvenetAdapter adapter;
