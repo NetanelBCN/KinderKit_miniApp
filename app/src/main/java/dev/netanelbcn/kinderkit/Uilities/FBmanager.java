@@ -21,6 +21,7 @@ import dev.netanelbcn.kinderkit.Interfaces.DataLoadCallback;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
 
 
 public class FBmanager {
@@ -52,7 +53,7 @@ public class FBmanager {
                     Map<String, KidEvent> myKE = (Map<String, KidEvent>) kidSnapshot.child("Events").getValue();
                     myKid.setEvents(myKid.convertKEtoArrayList(myKE));
                     Map<String, String> photosUri = (Map<String, String>) kidSnapshot.child("photosUri").getValue();
-                    myKid.setPhotosUri(myKid.convertMapToUriArrayList(photosUri));
+                    myKid.setPhotosUri(myKid.convertMapToMyPhotoArrayList(photosUri));
                     kids.add(myKid);
                 }
                 callback.onDataLoaded();
@@ -134,5 +135,9 @@ public class FBmanager {
 
     public void setProfilePhotoUriToDB(Uri uri, Kid kid) {
         ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(uri.toString());
+    }
+
+    public void removePhotoUriFB(MyPhoto photo, Kid myKid) {
+        ref.child(myKid.getkId() + "").child("photosUri").child(photo.getpId()).removeValue();
     }
 }

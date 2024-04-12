@@ -16,7 +16,7 @@ public class Kid {
     private String lName;
     private MyDate birthDate;
     private int age;
-    private ArrayList<Uri> photosUri;
+    private ArrayList<MyPhoto> photosUri;
     private Uri profilePhotoUri;
     private ArrayList<ImmunizationRecord> ImmunizationRecords;
     private ArrayList<KidEvent> events;
@@ -93,12 +93,12 @@ public class Kid {
         return this;
     }
 
-    public ArrayList<Uri> getPhotosUri() {
+    public ArrayList<MyPhoto> getPhotosUri() {
         return photosUri;
     }
 
 
-    public Kid setPhotosUri(ArrayList<Uri> photosUri) {
+    public Kid setPhotosUri(ArrayList<MyPhoto> photosUri) {
         this.photosUri = photosUri;
         return this;
     }
@@ -129,7 +129,6 @@ public class Kid {
             }
         }
         return doseNumber;
-
     }
 
     public ArrayList<KidEvent> getEvents() {
@@ -158,8 +157,8 @@ public class Kid {
 
     public Map<String, String> getPhotosUriMap() {
         Map<String, String> map = new HashMap<>();
-        for (Uri uri : this.getPhotosUri()) {
-            map.put(UUID.randomUUID().toString(), uri.toString());
+        for (MyPhoto photo : this.getPhotosUri()) {
+            map.put(photo.getpId(), photo.getPhotoUri().toString());
         }
         Log.d("050222", map.toString());
         return map;
@@ -184,14 +183,15 @@ public class Kid {
     }
 
 
-    public ArrayList<Uri> convertMapToUriArrayList(Map<String, String> map) {
-        ArrayList<Uri> uriList = new ArrayList<>();
+    public ArrayList<MyPhoto> convertMapToMyPhotoArrayList(Map<String, String> map) {
+        ArrayList<MyPhoto> photos = new ArrayList<>();
         if (map == null)
-            return uriList;
+            return photos;
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            uriList.add(Uri.parse(entry.getValue()));
+            MyPhoto photo = new MyPhoto().setpId(entry.getKey()).setPhotoUri(Uri.parse(entry.getValue()));
+            photos.add(photo);
         }
-        return uriList;
+        return photos;
     }
 
     public ArrayList<ImmunizationRecord> convertIRtoArrayList(Map<String, ImmunizationRecord> map) {

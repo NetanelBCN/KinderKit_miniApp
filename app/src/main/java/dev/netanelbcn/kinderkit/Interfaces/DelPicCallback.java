@@ -2,8 +2,10 @@ package dev.netanelbcn.kinderkit.Interfaces;
 
 import android.net.Uri;
 
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
+
 public interface DelPicCallback {
-    void onDelPic(Uri path);
+    void onDelPic(MyPhoto photo);
 
 
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import dev.netanelbcn.kinderkit.Interfaces.DelPicCallback;
 import dev.netanelbcn.kinderkit.Interfaces.SetAsProfilePictureCallback;
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
 import dev.netanelbcn.kinderkit.R;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PictureViewHolder> {
@@ -25,9 +26,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PictureV
 
     private DelPicCallback delPicCallback;
     private SetAsProfilePictureCallback setAsProfilePictureCallback;
-    private ArrayList<Uri> pictures;
+    private ArrayList<MyPhoto> pictures;
 
-    public GalleryAdapter(Context context, ArrayList<Uri> pictures) {
+    public GalleryAdapter(Context context, ArrayList<MyPhoto> pictures) {
         this.context = context;
         this.pictures = pictures;
     }
@@ -52,13 +53,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PictureV
 
     @Override
     public void onBindViewHolder(@NonNull GalleryAdapter.PictureViewHolder holder, int position) {
-        Uri picture = getItem(position);
-        holder.PG_SIV_Photo.setImageURI(picture);
-        Glide.with(this.context).load(picture).placeholder(R.drawable.ic_launcher_background)
+        MyPhoto picture = getItem(position);
+        holder.PG_SIV_Photo.setImageURI(picture.getPhotoUri());
+        Glide.with(this.context).load(picture.getPhotoUri()).placeholder(R.drawable.ic_launcher_background)
                 .into(holder.PG_SIV_Photo);
         holder.PG_MB_SetAsProfilePicture.setOnClickListener(v -> {
             if (setAsProfilePictureCallback != null)
-                setAsProfilePictureCallback.onSetAsProfilePicture(picture);
+                setAsProfilePictureCallback.onSetAsProfilePicture(picture.getPhotoUri());
         });
         holder.PG_MB_Delete.setOnClickListener(v -> {
             if (delPicCallback != null)
@@ -71,7 +72,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PictureV
         return pictures.size();
     }
 
-    private Uri getItem(int position) {
+    private MyPhoto getItem(int position) {
         return pictures.get(position);
     }
 

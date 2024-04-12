@@ -11,6 +11,7 @@ import java.util.Comparator;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.KidEvent;
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
 
 public class DataManager {
 
@@ -93,7 +94,8 @@ public class DataManager {
     }
 
     public void addPhotoUri(Uri uri, Kid kid) {
-        kid.getPhotosUri().add(uri);
+        MyPhoto myPhoto = new MyPhoto().setPhotoUri(uri);
+        kid.getPhotosUri().add(myPhoto);
         fbmanager.addPhotoUriToDB(uri, kid);
     }
 
@@ -188,5 +190,10 @@ public class DataManager {
 
 
         return this;
+    }
+
+    public void removePhotoUri(MyPhoto photo, Kid myKid) {
+        myKid.getPhotosUri().remove(photo);
+        fbmanager.removePhotoUriFB(photo, myKid);
     }
 }

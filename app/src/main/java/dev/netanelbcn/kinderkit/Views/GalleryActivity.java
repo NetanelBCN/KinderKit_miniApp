@@ -24,13 +24,14 @@ import java.util.UUID;
 
 import dev.netanelbcn.kinderkit.Adapters.GalleryAdapter;
 import dev.netanelbcn.kinderkit.Models.Kid;
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
 public class GalleryActivity extends AppCompatActivity {
 
     public GalleryAdapter adapter;
-    private ArrayList<Uri> images;
+    private ArrayList<MyPhoto> images;
     private int currentKidPosition;
 
     private Kid myKid;
@@ -72,10 +73,10 @@ public class GalleryActivity extends AppCompatActivity {
         GA_RV_gallery.setLayoutManager(new
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new GalleryAdapter(this, images);
-//        adapter.setDelPicCallback((uri) -> {
-//            DataManager.getInstance().removePhotoUri(uri, myKid);
-//            adapter.notifyDataSetChanged();
-//        });
+        adapter.setDelPicCallback((uri) -> {
+            DataManager.getInstance().removePhotoUri(uri, myKid);
+            adapter.notifyDataSetChanged();
+        });
 
         adapter.setSetAsProfilePictureCallback((uri) -> {
             DataManager.getInstance().setProfilePhotoUri(uri, myKid);
@@ -85,6 +86,24 @@ public class GalleryActivity extends AppCompatActivity {
         GA_RV_gallery.setAdapter(adapter);
 
     }
+    private void attachListeners() {
+        EA_MB_add_photo.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            activityResultLauncher.launch(intent);
+        });
+    }
+
+    private void getIntents() {
+        currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
+    }
+
+
+    private void connectUI() {
+        GA_RV_gallery = findViewById(R.id.GA_RV_gallery);
+        EA_MB_add_photo = findViewById(R.id.EA_MB_add_photo);
+    }
+
 
     private void uploadImage(Uri image) {
         StorageReference reference = storageReference.child(UUID.randomUUID().toString() + ".jpg");
@@ -108,21 +127,5 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
-    private void attachListeners() {
-        EA_MB_add_photo.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            activityResultLauncher.launch(intent);
-        });
-    }
 
-    private void getIntents() {
-        currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
-    }
-
-
-    private void connectUI() {
-        GA_RV_gallery = findViewById(R.id.GA_RV_gallery);
-        EA_MB_add_photo = findViewById(R.id.EA_MB_add_photo);
-    }
 }

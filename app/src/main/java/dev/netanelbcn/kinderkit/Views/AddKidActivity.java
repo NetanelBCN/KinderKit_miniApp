@@ -22,6 +22,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.UUID;
 
 import dev.netanelbcn.kinderkit.Models.Kid;
+import dev.netanelbcn.kinderkit.Models.MyPhoto;
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Uilities.DataManager;
 
@@ -78,9 +79,7 @@ public class AddKidActivity extends AppCompatActivity {
                 Kid kid = new Kid().setBirthDate(day, month + 1, year).setfName(firstName).setlName(lastName);
                 if (fbImage != null) {
                     kid.setProfilePhotoUri(fbImage);
-                    kid.getPhotosUri().add(fbImage);
-
-//                    kid.getPhotosUri().add(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/DEFAULT.jpg?alt=media&token=f55bdee7-a8dd-4e7a-822d-ac0b9b97d873"));
+                    kid.getPhotosUri().add(new MyPhoto().setPhotoUri(fbImage));
 
                 } else
                     kid.setProfilePhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/DEFAULT.jpg?alt=media&token=f55bdee7-a8dd-4e7a-822d-ac0b9b97d873"));
@@ -90,6 +89,16 @@ public class AddKidActivity extends AppCompatActivity {
             finish();
         });
     }
+
+
+    private void connectUI() {
+        AK_ACET_editTextFirstName = findViewById(R.id.AK_ACET_editTextFirstName);
+        AK_ACET_editTextLastName = findViewById(R.id.AK_ACET_editTextLastName);
+        AK_DP_datePicker = findViewById(R.id.AK_DP_datePicker);
+        AK_MB_buttonAddPhoto = findViewById(R.id.AK_MB_buttonAddPhoto);
+        AK_MB_buttonAddKid = findViewById(R.id.AK_MB_buttonAddKid);
+    }
+
 
     private void uploadImage(Uri image) {
         StorageReference reference = storageReference.child(UUID.randomUUID().toString() + ".jpg");
@@ -119,11 +128,5 @@ public class AddKidActivity extends AppCompatActivity {
         });
     }
 
-    private void connectUI() {
-        AK_ACET_editTextFirstName = findViewById(R.id.AK_ACET_editTextFirstName);
-        AK_ACET_editTextLastName = findViewById(R.id.AK_ACET_editTextLastName);
-        AK_DP_datePicker = findViewById(R.id.AK_DP_datePicker);
-        AK_MB_buttonAddPhoto = findViewById(R.id.AK_MB_buttonAddPhoto);
-        AK_MB_buttonAddKid = findViewById(R.id.AK_MB_buttonAddKid);
-    }
+
 }
