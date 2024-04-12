@@ -91,6 +91,11 @@ public class DataManager {
         fbmanager.addImmunizationRecordToDB(record, kid);
     }
 
+    public void addPhotoUri(Uri uri, Kid kid) {
+        kid.getPhotosUri().add(uri);
+        fbmanager.addPhotoUriToDB(uri, kid);
+    }
+
     public void addKidEvent(KidEvent event, Kid kid) {
         kid.getEvents().add(event);
         fbmanager.addKidEventToDB(event, kid);

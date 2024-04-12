@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.UUID;
 
 import dev.netanelbcn.kinderkit.Interfaces.DataLoadCallback;
 import dev.netanelbcn.kinderkit.Models.ImmunizationRecord;
@@ -50,6 +51,8 @@ public class FBmanager {
                     myKid.setImmunizationRecords(myKid.convertIRtoArrayList(myIR));
                     Map<String, KidEvent> myKE = (Map<String, KidEvent>) kidSnapshot.child("Events").getValue();
                     myKid.setEvents(myKid.convertKEtoArrayList(myKE));
+                    Map<String, String> photosUri = (Map<String, String>) kidSnapshot.child("photosUri").getValue();
+                    myKid.setPhotosUri(myKid.convertMapToUriArrayList(photosUri));
                     kids.add(myKid);
                 }
                 callback.onDataLoaded();
@@ -89,7 +92,10 @@ public class FBmanager {
 
     public void addKidEventToDB(KidEvent kEvent, Kid kid) {
         ref.child(kid.getkId() + "").child("Events").child(kEvent.geteId()).setValue(kEvent);
-        int x = 10;
+    }
+
+    public void addPhotoUriToDB(Uri uri, Kid kid) {
+        ref.child(kid.getkId() + "").child("photosUri").child(UUID.randomUUID().toString()).setValue(uri.toString());
     }
 
 
@@ -106,9 +112,9 @@ public class FBmanager {
         ref.child(kid.getkId() + "").child("name").child("lName").setValue(kid.getlName());
         ref.child(kid.getkId() + "").child("birthDate").setValue(kid.getBirthDate());
         ref.child(kid.getkId() + "").child("age").setValue(kid.getAge());
-        if(kid.getPhotosUri() != null)
+        if (kid.getPhotosUri() != null)
             ref.child(kid.getkId() + "").child("photosUri").setValue(kid.getPhotosUriMap());
-        int x=10;
+        int x = 10;
         if (kid.getProfilePhotoUri() != null)
             ref.child(kid.getkId() + "").child("profilePhotoUri").setValue(kid.getProfilePhotoUri().toString());
     }

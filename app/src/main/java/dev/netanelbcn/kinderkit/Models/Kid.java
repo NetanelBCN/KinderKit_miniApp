@@ -98,8 +98,6 @@ public class Kid {
     }
 
 
-
-
     public Kid setPhotosUri(ArrayList<Uri> photosUri) {
         this.photosUri = photosUri;
         return this;
@@ -158,12 +156,12 @@ public class Kid {
                 '}';
     }
 
-    public Map<String,String> getPhotosUriMap(){
-        Map<String,String> map = new HashMap<>();
+    public Map<String, String> getPhotosUriMap() {
+        Map<String, String> map = new HashMap<>();
         for (Uri uri : this.getPhotosUri()) {
-            map.put(UUID.randomUUID().toString(),uri.toString());
+            map.put(UUID.randomUUID().toString(), uri.toString());
         }
-        Log.d("050222",map.toString());
+        Log.d("050222", map.toString());
         return map;
     }
 
@@ -185,12 +183,15 @@ public class Kid {
         return map;
     }
 
-    public Map<String, Uri> getPhotosMap() {
-        Map<String, Uri> map = new HashMap<>();
-        for (Uri uri : this.getPhotosUri()) {
-            map.put(uri.toString(), uri);
+
+    public ArrayList<Uri> convertMapToUriArrayList(Map<String, String> map) {
+        ArrayList<Uri> uriList = new ArrayList<>();
+        if (map == null)
+            return uriList;
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            uriList.add(Uri.parse(entry.getValue()));
         }
-        return map;
+        return uriList;
     }
 
     public ArrayList<ImmunizationRecord> convertIRtoArrayList(Map<String, ImmunizationRecord> map) {
