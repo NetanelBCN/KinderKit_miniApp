@@ -1,16 +1,26 @@
 package dev.netanelbcn.kinderkit.Views;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import dev.netanelbcn.kinderkit.Adapters.GalleryAdapter;
 import dev.netanelbcn.kinderkit.Models.Kid;
@@ -23,8 +33,28 @@ public class GalleryActivity extends AppCompatActivity {
     private ArrayList<Uri> images;
     private int currentKidPosition;
 
+    private Kid myKid;
     private RecyclerView GA_RV_gallery;
-    private MaterialButton EA_MB_add_event;
+    private MaterialButton EA_MB_add_photo;
+    private StorageReference storageReference;
+    private Uri image;
+    private Uri fbImage;
+
+
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult o) {
+            if (o.getResultCode() == RESULT_OK) {
+                if (o.getData() != null) {
+                    image = o.getData().getData();
+                    Toast.makeText(GalleryActivity.this, "Image selected successfully", Toast.LENGTH_SHORT).show();
+                    uploadImage(image); // Move uploadImage() call here
+                } else {
+                    Toast.makeText(GalleryActivity.this, "No image selected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    });
 
 
     @Override
@@ -34,8 +64,10 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         connectUI();
         getIntents();
+        FirebaseApp.initializeApp(GalleryActivity.this);
+        storageReference = FirebaseStorage.getInstance().getReference();
         attachListeners();
-        Kid myKid = DataManager.getInstance().getKids().get(currentKidPosition);
+        myKid = DataManager.getInstance().getKids().get(currentKidPosition);
         images = myKid.getPhotosUri();
         GA_RV_gallery.setLayoutManager(new
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -44,12 +76,7 @@ public class GalleryActivity extends AppCompatActivity {
 //            DataManager.getInstance().removePhotoUri(uri, myKid);
 //            adapter.notifyDataSetChanged();
 //        });
-//        adapter.setSetAsProfilePictureCallback((uri) -> {
-//            DataManager.getInstance().setProfilePhotoUri(uri, myKid);
-//            adapter.notifyDataSetChanged();
-//            Uri newProfilePictureUri = myKid.getProfilePhotoUri();
-//            // Update your UI with the new profile picture URI
-//        });
+
         adapter.setSetAsProfilePictureCallback((uri) -> {
             DataManager.getInstance().setProfilePhotoUri(uri, myKid);
             adapter.notifyDataSetChanged();
@@ -59,9 +86,33 @@ public class GalleryActivity extends AppCompatActivity {
 
     }
 
+    private void uploadImage(Uri image) {
+        StorageReference reference = storageReference.child(UUID.randomUUID().toString() + ".jpg");
+        reference.putFile(image).addOnSuccessListener(taskSnapshot -> {
+            // Image uploaded successfully, now get the download URL
+            reference.getDownloadUrl().addOnSuccessListener(uri -> {
+                // Get the download URL and use it to store or display the image
+                fbImage = uri;
+                DataManager.getInstance().addPhotoUri(fbImage, myKid);
+                adapter.notifyDataSetChanged();
+                // Do something with the imageUrl, such as storing it in the database
+                Toast.makeText(GalleryActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+            }).addOnFailureListener(e -> {
+                // Handle any errors getting the download URL
+                Toast.makeText(GalleryActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+            });
+        }).addOnFailureListener(e -> {
+            Toast.makeText(GalleryActivity.this, "Image upload failed", Toast.LENGTH_SHORT).show();
+        }).addOnProgressListener(snapshot -> {
+            Toast.makeText(GalleryActivity.this, "Upload In Progress", Toast.LENGTH_SHORT).show();
+        });
+    }
+
     private void attachListeners() {
-        EA_MB_add_event.setOnClickListener(v -> {
-            //add picture methods
+        EA_MB_add_photo.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            activityResultLauncher.launch(intent);
         });
     }
 
@@ -72,6 +123,6 @@ public class GalleryActivity extends AppCompatActivity {
 
     private void connectUI() {
         GA_RV_gallery = findViewById(R.id.GA_RV_gallery);
-        EA_MB_add_event = findViewById(R.id.EA_MB_add_event);
+        EA_MB_add_photo = findViewById(R.id.EA_MB_add_photo);
     }
 }

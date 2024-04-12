@@ -96,6 +96,7 @@ public class FBmanager {
 
     public void addPhotoUriToDB(Uri uri, Kid kid) {
         ref.child(kid.getkId() + "").child("photosUri").child(UUID.randomUUID().toString()).setValue(uri.toString());
+        int x=10;
     }
 
 
