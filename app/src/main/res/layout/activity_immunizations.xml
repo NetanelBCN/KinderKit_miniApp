@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.GalleryActivity"
-    android:orientation="vertical"
-    android:background="@drawable/immunization_background">
+    tools:context=".Views.GalleryActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/GA_SIV_immunization"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/GA_MTV_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/immunizations"
-        android:background="#DDF6E4"
-        android:textSize="50sp"
-        android:textStyle="bold|italic"
-        android:textColor="#0AA0FA"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"/>
-
+        android:background="#DDF6E4"
+        android:text="@string/immunizations"
+        android:textColor="#0AA0FA"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/IA_RV_immunizationRecord"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_above="@id/EA_MB_add_record"
         android:layout_below="@id/GA_MTV_title"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         android:padding="10dp"
-        android:scrollbars="vertical"
         android:scrollbarStyle="insideOverlay"
-        />
+        android:scrollbars="vertical" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/EA_MB_add_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_record"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#0AA0FA"
+        android:padding="16dp"
+        android:text="@string/add_record"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:padding="16dp"
-        android:layout_gravity="center_horizontal"
-        />
-</androidx.appcompat.widget.LinearLayoutCompat>
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

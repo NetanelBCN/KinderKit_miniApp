@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatEditText;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,6 +36,7 @@ public class AddKidActivity extends AppCompatActivity {
     private MaterialButton AK_MB_buttonAddPhoto;
     private MaterialButton AK_MB_buttonAddKid;
     private StorageReference storageReference;
+    private ShapeableImageView AK_SIV_imageViewProfile;
     private Uri image;
     private Uri fbImage;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -57,6 +60,7 @@ public class AddKidActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_add_kid);
         connectUI();
+        Glide.with(this).load(R.drawable.addeventbackground).placeholder(R.drawable.ic_launcher_background).into(AK_SIV_imageViewProfile);
         FirebaseApp.initializeApp(AddKidActivity.this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -97,6 +101,7 @@ public class AddKidActivity extends AppCompatActivity {
         AK_DP_datePicker = findViewById(R.id.AK_DP_datePicker);
         AK_MB_buttonAddPhoto = findViewById(R.id.AK_MB_buttonAddPhoto);
         AK_MB_buttonAddKid = findViewById(R.id.AK_MB_buttonAddKid);
+        AK_SIV_imageViewProfile = findViewById(R.id.AK_SIV_imageViewProfile);
     }
 
 

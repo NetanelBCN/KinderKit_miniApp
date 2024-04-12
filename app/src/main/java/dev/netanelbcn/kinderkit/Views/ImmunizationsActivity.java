@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,8 @@ public class ImmunizationsActivity extends AppCompatActivity {
     private RecyclerView IA_RV_immunizationRecord;
     private MaterialButton EA_MB_add_record;
 
+    private ShapeableImageView GA_SIV_immunization;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class ImmunizationsActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_immunizations);
         connectUI();
+        Glide.with(this).load(R.drawable.immunization_background).placeholder(R.drawable.ic_launcher_background).into(GA_SIV_immunization);
         getIntents();
         attachListeners();
         Kid myKid= DataManager.getInstance().getKids().get(currentKidPosition);
@@ -65,6 +70,7 @@ public class ImmunizationsActivity extends AppCompatActivity {
     private void connectUI() {
         IA_RV_immunizationRecord = findViewById(R.id.IA_RV_immunizationRecord);
         EA_MB_add_record = findViewById(R.id.EA_MB_add_record);
+        GA_SIV_immunization = findViewById(R.id.GA_SIV_immunization);
     }
 
     private void refreshRecordsList() {

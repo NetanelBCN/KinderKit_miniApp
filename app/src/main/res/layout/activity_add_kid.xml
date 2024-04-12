@@ -2,8 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ak_back"
     android:padding="16dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/AK_SIV_imageViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/AK_ACET_editTextFirstName"

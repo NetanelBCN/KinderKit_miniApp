@@ -13,13 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import dev.netanelbcn.kinderkit.Adapters.MenuCardsAdapter;
 import dev.netanelbcn.kinderkit.Interfaces.KidCallback;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Uilities.DataManager;
 import dev.netanelbcn.kinderkit.Views.KidInfoActivity;
 import dev.netanelbcn.kinderkit.databinding.FragmentHomeBinding;
 
@@ -30,6 +30,8 @@ public class HomeFragment extends Fragment {
     //    private DataManager dataManager;
     private KidCallback callbackCardClicked;
     private RecyclerView FH_RV_kids;
+
+    private ShapeableImageView FH_SIV_logo;
 
     private FragmentHomeBinding binding;
 
@@ -44,7 +46,10 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.FHMTVTitle;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         adapter = new MenuCardsAdapter(getContext());
-        initViews(root);
+        connectUI(root);
+        Glide.with(this).load(R.drawable.homepagebackgrond).placeholder(R.drawable.ic_launcher_background).into(FH_SIV_logo);
+
+
         adapter.setPlayerCallback(new KidCallback() {
             @Override
             public void CardClicked(Kid kid, int position) {
@@ -61,11 +66,12 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void initViews(View v) {
+    private void connectUI(View v) {
         FH_RV_kids = v.findViewById(R.id.FH_RV_kids);
         FH_RV_kids.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         FH_RV_kids.setLayoutManager(layoutManager);
+        FH_SIV_logo = v.findViewById(R.id.FH_SIV_logo);
     }
 
     private void refreshKidsList() {

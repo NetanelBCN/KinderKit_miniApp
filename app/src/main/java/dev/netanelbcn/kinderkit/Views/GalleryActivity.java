@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -40,6 +42,7 @@ public class GalleryActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private Uri image;
     private Uri fbImage;
+    private ShapeableImageView GA_SIV_gallery;
 
 
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -64,6 +67,7 @@ public class GalleryActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_gallery);
         connectUI();
+        Glide.with(this).load(R.drawable.gallerybackground).placeholder(R.drawable.ic_launcher_background).into(GA_SIV_gallery);
         getIntents();
         FirebaseApp.initializeApp(GalleryActivity.this);
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -102,6 +106,7 @@ public class GalleryActivity extends AppCompatActivity {
     private void connectUI() {
         GA_RV_gallery = findViewById(R.id.GA_RV_gallery);
         EA_MB_add_photo = findViewById(R.id.EA_MB_add_photo);
+        GA_SIV_gallery = findViewById(R.id.GA_SIV_gallery);
     }
 
 

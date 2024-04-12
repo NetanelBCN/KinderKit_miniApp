@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class EventKidActivity extends AppCompatActivity {
     private int currentKidPosition;
     private RecyclerView EA_RV_events;
     private MaterialButton EA_MB_add_event;
-
+    private ShapeableImageView GA_SIV_event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class EventKidActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_event_kid);
         connectUI();
+        Glide.with(this).load(R.drawable.eventbackground).placeholder(R.drawable.ic_launcher_background).into(GA_SIV_event);
         getIntents();
         attachListeners();
         Kid myKid = DataManager.getInstance().getKids().get(currentKidPosition);
@@ -54,7 +57,6 @@ public class EventKidActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
     private void getIntents() {
         currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
     }
@@ -62,13 +64,12 @@ public class EventKidActivity extends AppCompatActivity {
     private void connectUI() {
         EA_RV_events = findViewById(R.id.EA_RV_events);
         EA_MB_add_event = findViewById(R.id.EA_MB_add_event);
+        GA_SIV_event = findViewById(R.id.GA_SIV_event);
     }
-
     public void refreshEventsList() {
         events.sort((o1, o2) -> o1.getEDate().compareTo(o2.getEDate()));
         adapter.notifyDataSetChanged();
     }
-
     @Override
     protected void onResume() {
         super.onResume();

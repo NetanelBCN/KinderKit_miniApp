@@ -25,6 +25,8 @@ public class KidInfoActivity extends AppCompatActivity {
     private MaterialButton FH_BTN_events;
     private MaterialButton FH_BTN_immunization;
     private MaterialButton FH_BTN_delete;
+
+    private ShapeableImageView FH_SIV_background;
     private int currentKidId;
 
     @Override
@@ -33,6 +35,8 @@ public class KidInfoActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_kid_info);
         connectUI();
+        Glide.with(this).load(R.drawable.kidinfoback).placeholder(R.drawable.ic_launcher_background).into(FH_SIV_background);
+
         getIntents();
         attachListeners();
 
@@ -80,6 +84,7 @@ public class KidInfoActivity extends AppCompatActivity {
         FH_BTN_events = findViewById(R.id.FH_BTN_events);
         FH_BTN_immunization = findViewById(R.id.FH_BTN_immunization);
         FH_BTN_delete = findViewById(R.id.FH_BTN_delete);
+        FH_SIV_background = findViewById(R.id.FH_SIV_background);
     }
 
 
