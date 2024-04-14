@@ -1,5 +1,5 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![kinderkitlogo](https://github.com/NetanelBCN/KinderKit/assets/134021385/22528331-0e23-453c-8808-99481bc3544f)
 
 
 # Kinderkit 
