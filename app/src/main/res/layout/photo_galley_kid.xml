@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:orientation="vertical"
 
         >
 
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginHorizontal="10dp"
             android:backgroundTint="@color/green"
             android:text="@string/set_as_profile_picture" />
 

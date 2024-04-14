@@ -11,7 +11,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,17 +25,16 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import dev.netanelbcn.kinderkit.Adapters.GalleryAdapter;
+import dev.netanelbcn.kinderkit.Controllers.DataManager;
 import dev.netanelbcn.kinderkit.Models.Kid;
 import dev.netanelbcn.kinderkit.Models.MyPhoto;
 import dev.netanelbcn.kinderkit.R;
-import dev.netanelbcn.kinderkit.Controllers.DataManager;
 
 public class GalleryActivity extends AppCompatActivity {
 
     public GalleryAdapter adapter;
     private ArrayList<MyPhoto> images;
     private int currentKidPosition;
-
     private Kid myKid;
     private RecyclerView GA_RV_gallery;
     private MaterialButton EA_MB_add_photo;
@@ -43,6 +42,8 @@ public class GalleryActivity extends AppCompatActivity {
     private Uri image;
     private Uri fbImage;
     private ShapeableImageView GA_SIV_gallery;
+
+    public static int SPAN_COUNT = 2;
 
 
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -60,7 +61,6 @@ public class GalleryActivity extends AppCompatActivity {
         }
     });
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +75,11 @@ public class GalleryActivity extends AppCompatActivity {
         myKid = DataManager.getInstance().getKids().get(currentKidPosition);
         images = myKid.getPhotosUri();
         GA_RV_gallery.setLayoutManager(new
-                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                GridLayoutManager(this, SPAN_COUNT));
+
+//        GA_RV_gallery.setLayoutManager(new
+//                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
         adapter = new GalleryAdapter(this, images);
         adapter.setDelPicCallback((uri) -> {
             DataManager.getInstance().removePhotoUri(uri, myKid);
@@ -88,8 +92,8 @@ public class GalleryActivity extends AppCompatActivity {
             finish();
         });
         GA_RV_gallery.setAdapter(adapter);
-
     }
+
     private void attachListeners() {
         EA_MB_add_photo.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
@@ -102,13 +106,11 @@ public class GalleryActivity extends AppCompatActivity {
         currentKidPosition = getIntent().getIntExtra("kidPosition", -1);
     }
 
-
     private void connectUI() {
         GA_RV_gallery = findViewById(R.id.GA_RV_gallery);
         EA_MB_add_photo = findViewById(R.id.EA_MB_add_photo);
         GA_SIV_gallery = findViewById(R.id.GA_SIV_gallery);
     }
-
 
     private void uploadImage(Uri image) {
         StorageReference reference = storageReference.child(UUID.randomUUID().toString() + ".jpg");
@@ -119,10 +121,8 @@ public class GalleryActivity extends AppCompatActivity {
                 fbImage = uri;
                 DataManager.getInstance().addPhotoUri(fbImage, myKid);
                 adapter.notifyDataSetChanged();
-                // Do something with the imageUrl, such as storing it in the database
                 Toast.makeText(GalleryActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(e -> {
-                // Handle any errors getting the download URL
                 Toast.makeText(GalleryActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
             });
         }).addOnFailureListener(e -> {
