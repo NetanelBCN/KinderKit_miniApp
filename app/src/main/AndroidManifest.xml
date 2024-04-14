@@ -19,7 +19,7 @@
         android:theme="@style/Theme.KinderKit"
         tools:targetApi="31">
         <activity
-            android:name=".Views.AddRecordActivity"
+            android:name=".Views.AddActivities.AddRecordActivity"
             android:exported="true">
         </activity>
         <activity
@@ -38,11 +38,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".Views.AddKidActivity"
+            android:name=".Views.AddActivities.AddKidActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Views.AddEventActivity"
+            android:name=".Views.AddActivities.AddEventActivity"
             android:exported="true">
         </activity>
 
@@ -60,11 +60,7 @@
             android:exported="true"
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.KinderKit.NoActionBar">
-
         </activity>
-        <activity
-            android:name=".Views.MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

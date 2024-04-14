@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Controllers.DataManager;
+import dev.netanelbcn.kinderkit.Views.AddActivities.AddKidActivity;
 import dev.netanelbcn.kinderkit.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {

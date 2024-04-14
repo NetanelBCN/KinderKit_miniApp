@@ -1,4 +1,4 @@
-package dev.netanelbcn.kinderkit.Views;
+package dev.netanelbcn.kinderkit.Views.AddActivities;
 
 import android.os.Bundle;
 import android.widget.DatePicker;

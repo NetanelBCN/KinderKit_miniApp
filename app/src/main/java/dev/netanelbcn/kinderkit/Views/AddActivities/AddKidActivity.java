@@ -1,4 +1,4 @@
-package dev.netanelbcn.kinderkit.Views;
+package dev.netanelbcn.kinderkit.Views.AddActivities;
 
 import android.content.Intent;
 import android.net.Uri;
