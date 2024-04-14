@@ -5,6 +5,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,18 +24,8 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
-import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Controllers.DataManager;
+import dev.netanelbcn.kinderkit.R;
 import dev.netanelbcn.kinderkit.Views.AddActivities.AddKidActivity;
 import dev.netanelbcn.kinderkit.databinding.ActivityMenuBinding;
 
@@ -41,11 +42,12 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMenu.toolbar);
         binding.appBarMenu.fab.setOnClickListener(view -> {
-            Intent intent=new Intent(MenuActivity.this, AddKidActivity.class);
+            Intent intent = new Intent(MenuActivity.this, AddKidActivity.class);
             startActivity(intent);
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -82,6 +84,7 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void deleteAccount() {
         AuthUI.getInstance()
                 .delete(this)
@@ -92,6 +95,7 @@ public class MenuActivity extends AppCompatActivity {
                 });
         DataManager.getInstance().deleteUser();
     }
+
     private void getIntents() {
         String name = getIntent().getStringExtra("name");
         String email = getIntent().getStringExtra("email");
@@ -118,6 +122,7 @@ public class MenuActivity extends AppCompatActivity {
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(NHM_IV_profilePic);
     }
+
     private void connectUI() {
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -125,6 +130,7 @@ public class MenuActivity extends AppCompatActivity {
         NHM_TV_userName = headerView.findViewById(R.id.NHM_TV_userName);
         NHM_TV_email = headerView.findViewById(R.id.NHM_TV_email);
     }
+
     @NonNull
     private NavController getNavController() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_menu);
