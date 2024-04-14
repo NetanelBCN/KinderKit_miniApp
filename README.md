@@ -2,7 +2,7 @@
 ![kinderkitlogo](https://github.com/NetanelBCN/KinderKit/assets/134021385/22528331-0e23-453c-8808-99481bc3544f)
 
 
-# Kinderkit 
+# KinderKit 
 
 Kinderkit is a versatile child management application designed to simplify the organization of children's information and activities. With Kinderkit, users can create accounts using their phone numbers or Gmail accounts, allowing for convenient access to a range of features.
 
