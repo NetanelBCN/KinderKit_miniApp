@@ -34,6 +34,11 @@ Kinderkit is a versatile child management application designed to simplify the o
 ![photo_2024-04-14_22-16-13](https://github.com/NetanelBCN/KinderKit/assets/134021385/7be54042-03d7-472a-9dd0-ac0fcc417c5d)
 ![photo_2024-04-14_22-16-18](https://github.com/NetanelBCN/KinderKit/assets/134021385/562b5d2b-6c2e-4b7c-a871-c4c308008676)
 
+## User details bar:
+
+![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/e30e8d7e-bef2-4c47-8cd0-346a0a9ca53e)
+
+
 
 
 
