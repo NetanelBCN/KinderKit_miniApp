@@ -38,10 +38,10 @@ Kinderkit is a versatile child management application designed to simplify the o
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Copyright (c) 2024 Netanel Boris Cohen Niazov 
 
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
+- Netanel Boris Cohen Niazov 
 
