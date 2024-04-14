@@ -51,6 +51,22 @@ Kinderkit is a versatile child management application designed to simplify the o
 
 ![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/437bd244-69d5-4a38-893a-e0c34cf64ae1)
 
+## "Kid's Immunization Records Screen" & "Add New Immunization Record Screen":
+
+![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/3872f228-d462-4c13-ba97-ea9c7cb7e8e7)
+![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/b419adb8-0a4c-4fae-9167-3aaf5a3b0329)
+
+## "Kid's Events Screen" & "Add New Event Screen":
+
+![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/27f685d8-74e2-4b9a-8233-5014e6651acc)
+![image](https://github.com/NetanelBCN/KinderKit/assets/134021385/9b1100e8-3272-45bf-8807-68b166d4b7a6)
+
+
+
+
+
+
+
 
 
 
