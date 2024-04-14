@@ -63,20 +63,6 @@ Kinderkit is a versatile child management application designed to simplify the o
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Watch Me!
 
 ## License
