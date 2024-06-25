@@ -55,7 +55,7 @@ public class FBmanager {
                     Map<String, String> photosUri = (Map<String, String>) kidSnapshot.child("photosUri").getValue();
                     myKid.setPhotosUri(myKid.convertMapToMyPhotoArrayList(photosUri));
                     kids.add(myKid);
-                    int x;
+
                 }
                 callback.onDataLoaded();
             }
